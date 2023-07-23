@@ -7,9 +7,13 @@ import SwiftUI
 
 @main
 struct Expense_TrackerApp: App {
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabBar(router: TabBarRouter())
+                .preferredColorScheme(isDarkMode ? .dark : .light)
+                .environment(\.locale, .init(identifier: "ru_RU"))
         }
     }
 }
