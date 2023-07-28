@@ -54,7 +54,7 @@ struct AddExpenseView: View {
                     return
                 }
                 
-                if let amount = Double(amountText) {
+                if let amount = Double(amountText.decimalFormatted) {
                     viewModel.addExpense(name: nameText, amount: amount, date: selectedDate)
                     showSheet = false
                 }

@@ -22,8 +22,9 @@ struct AddCostsView: View {
             Button("Добавить категорию расходов", action: {
                 onAddCategory(categoryText)
                 showSheet = false
+                categoryText = ""
             })
-            .disabled(categoryText.isEmpty) // кнопка неактивна, если текстовое поле пустое
+            .disabled(categoryText.isEmpty)
             .font(.headline)
             .foregroundColor(.white)
             .padding()
@@ -37,8 +38,8 @@ struct AddCostsView: View {
 
 struct AddCostsView_Previews: PreviewProvider {
     @State static var showSheet = false
-    @State static var categoryText = ""
-    static var categoriesData = [ExpenseCategory(name: "Category 1"), ExpenseCategory(name: "Category 2")]
+    @State static var categoryText = "1"
+    static var categoriesData = [ExpenseCategory(name: "1"), ExpenseCategory(name: "2")]
     
     static func onAddCategory(_ category: String) {
         print("Добавлена категория: \(category)")

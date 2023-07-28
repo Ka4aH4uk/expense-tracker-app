@@ -14,7 +14,6 @@ class ChartViewModel: ObservableObject {
     @Published var selectedInterval: Interval = .week
 
     init() {
-        // Загрузка данных и обновление графика
         loadExpenses()
         loadProfits()
         updateChartData()

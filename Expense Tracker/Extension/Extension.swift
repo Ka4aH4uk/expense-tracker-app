@@ -6,6 +6,15 @@
 import Foundation
 import SwiftUI
 
+// формат даты dd.MM.yyyy
+extension DateFormatter {
+    static let expenseDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        return formatter
+    }()
+}
+
 // кнопка очистки текстового поля
 public struct ClearButton: ViewModifier {
     @Binding var text: String
@@ -21,15 +30,6 @@ public struct ClearButton: ViewModifier {
             }
         }
     }
-}
-
-// формат даты dd.MM.yyyy
-extension DateFormatter {
-    static let expenseDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.yyyy"
-        return formatter
-    }()
 }
 
 // кастомный TextField
@@ -54,5 +54,11 @@ extension TextField {
                 .offset(y: binding.wrappedValue.isEmpty ? 20 : 0), alignment: .topLeading)
             .modifier(ClearButton(text: binding))
             .padding(.trailing, 20)
+    }
+}
+
+extension String {
+    var decimalFormatted: String {
+        return self.replacingOccurrences(of: ",", with: ".")
     }
 }

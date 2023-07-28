@@ -31,7 +31,7 @@ struct AddProfitView: View {
             Divider()
                 .padding(.horizontal, 5)
             Button(action: {
-                guard let amount = Double(amountText) else { return }
+                guard let amount = Double(amountText.decimalFormatted) else { return }
                 addProfitCategory(amount, selectedDate)
                 showSheet = false
             }, label: {
@@ -44,7 +44,7 @@ struct AddProfitView: View {
                 }
                 .contentShape(Rectangle())
             })
-            .disabled(amountText.isEmpty) // кнопка неактивна, если текстовое поле пустое
+            .disabled(amountText.isEmpty)
             .font(.headline)
             .foregroundColor(.white)
             .frame(width: 350, height: 50)

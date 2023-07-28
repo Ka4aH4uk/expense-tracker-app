@@ -7,8 +7,8 @@ import SwiftUI
 
 struct ExpenseDetailView: View {
     @ObservedObject private var viewModel: ExpenseDetailViewModel
-    @State private var showExpensesModal = false // переменная для отслеживания показа модального окна
-    @State private var showExpenseChart = false // переменная для отслеживания показа окна с графиком платежей
+    @State private var showExpensesModal = false
+    @State private var showExpenseChart = false
     @Environment(\.dismiss) private var dismiss
     
     init(category: ExpenseCategory) {
@@ -102,9 +102,9 @@ struct ExpenseDetailView: View {
 
 struct ExpenseDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        let category = ExpenseCategory(name: "Sample Category", expenses: [
-            Expense(name: "Expense 1", amount: 100, date: Date()),
-            Expense(name: "Expense 2", amount: 50, date: Date().addingTimeInterval(-86400))
+        let category = ExpenseCategory(name: "Категория", expenses: [
+            Expense(name: "1", amount: 100, date: Date()),
+            Expense(name: "2", amount: 50, date: Date().addingTimeInterval(-86400))
         ])
         ExpenseDetailView(category: category)
     }

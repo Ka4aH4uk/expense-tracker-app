@@ -9,7 +9,6 @@ class ProfitViewModel: ObservableObject {
     @Published var balance: Double = 0.0
     @Published var profitCategories: [Profit] = []
 
-    // Инициализация вьюмодели
     init() {
         self.balance = UserDefaults.standard.double(forKey: "balance")
         if let data = UserDefaults.standard.data(forKey: "profitCategories"),
@@ -18,7 +17,6 @@ class ProfitViewModel: ObservableObject {
         }
     }
 
-    // Метод добавления дохода
     func addProfit(amount: Double, date: Date) {
         let profit = Profit(amount: amount, date: date)
         balance += amount

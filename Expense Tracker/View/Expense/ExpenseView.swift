@@ -6,11 +6,12 @@
 import SwiftUI
 
 struct ExpenseView: View {
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
+    @AppStorage("isChangeTheme") private var isChangeTheme: Bool = false
     @EnvironmentObject var router: TabBarRouter
     @StateObject private var viewModel = ExpenseViewModel()
     @State private var showCostsModal = false
     @State private var categoryText = ""
-    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     
     var body: some View {
         NavigationView {
@@ -24,10 +25,17 @@ struct ExpenseView: View {
                         .overlay {
                             Button {
                                 isDarkMode.toggle()
+                                isChangeTheme.toggle()
                             } label: {
-                                Image(systemName: isDarkMode ? "sun.max" : "moon.stars.fill")
-                                    .imageScale(.large)
+                                if isChangeTheme {
+                                    LottieView(name: "sun")
+                                        .scaleEffect(1.5)
+                                } else {
+                                    LottieView(name: "moon")
+                                        .scaleEffect(2)
+                                }
                             }
+                            .padding(.leading, 40)
                         }
                 }
                 Spacer()
