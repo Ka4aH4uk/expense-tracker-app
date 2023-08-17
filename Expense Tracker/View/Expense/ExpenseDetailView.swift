@@ -22,7 +22,7 @@ struct ExpenseDetailView: View {
             Divider()
             
             NavigationLink(
-                destination: ExpenseChartView(category: ExpenseCategory(name: viewModel.category.name, expenses: self.viewModel.category.expenses), showExpenseChart: $showExpenseChart)
+                destination: ExpenseChartView(category: viewModel.category, showExpenseChart: $showExpenseChart)
             ) {
                 Text("График платежей")
                     .font(.headline).bold()
@@ -81,7 +81,7 @@ struct ExpenseDetailView: View {
             }
             .padding()
             .sheet(isPresented: $showExpensesModal) {
-                AddExpenseView(category: viewModel.category, showSheet: $showExpensesModal, expenses: $viewModel.expenses, allExpenses: $viewModel.allExpenses)
+                AddExpenseView(viewModel: viewModel, showSheet: $showExpensesModal)
                     .presentationDetents([.height(270)])
             }
         }

@@ -52,9 +52,19 @@ struct ExpenseView: View {
                         NavigationLink(
                             destination: ExpenseDetailView(category: category),
                             label: {
-                                Text(category.name)
-                                    .font(.headline)
-                                    .foregroundColor(isDarkMode ? .white : .black)
+                                HStack {
+                                    Image(systemName: "diamond")
+                                        .font(.title2)
+                                    VStack(alignment: .leading) {
+                                        Text(category.name)
+                                            .font(.headline)
+                                            .foregroundColor(isDarkMode ? .white : .black)
+                                            .padding(.vertical, 2)
+                                        Text("Кол-во платежей: \(category.expenses.count)")
+                                            .font(.caption2)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
                             })
                         .foregroundColor(.blue)
                         .frame(height: 45)

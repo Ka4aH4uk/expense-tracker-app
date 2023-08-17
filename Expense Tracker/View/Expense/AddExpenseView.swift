@@ -6,21 +6,13 @@
 import SwiftUI
 
 struct AddExpenseView: View {
-    let category: ExpenseCategory
+    @ObservedObject var viewModel: ExpenseDetailViewModel
     @Binding var showSheet: Bool
     @State private var nameText = ""
     @State private var amountText = ""
     @State private var selectedDate = Date()
     @State private var showAlert = false
     
-    @ObservedObject private var viewModel: ExpenseDetailViewModel
-    
-    init(category: ExpenseCategory, showSheet: Binding<Bool>, expenses: Binding<[Expense]>, allExpenses: Binding<[Expense]>) {
-        self.category = category
-        _showSheet = showSheet
-        _viewModel = ObservedObject(wrappedValue: ExpenseDetailViewModel(category: category))
-    }
-
     var body: some View {
         VStack {
             Spacer()
@@ -85,15 +77,12 @@ struct AddExpenseView: View {
     }
 }
 
-struct AddExpenseView_Previews: PreviewProvider {
-    @State private static var showSheet = true
-    @State private static var expenses: [Expense] = []
-    @State private static var allExpenses: [Expense] = []
-
-    static var previews: some View {
-        AddExpenseView(category: ExpenseCategory(name: "Категория"),
-                       showSheet: $showSheet,
-                       expenses: $expenses,
-                       allExpenses: $allExpenses)
-    }
-}
+//struct AddExpenseView_Previews: PreviewProvider {
+//    @State private static var showSheet = true
+//    @State private static var expenses: [Expense] = []
+//    @State private static var allExpenses: [Expense] = []
+//
+//    static var previews: some View {
+//        AddExpenseView(viewModel: ExpenseDetailViewModel(category: ExpenseCategory.self, showSheet: $showSheet))
+//    }
+//}
