@@ -5,6 +5,7 @@
 
 import SwiftUI
 import Charts
+import SwiftUIIntrospect
 
 struct ChartView: View {
     @EnvironmentObject var router: TabBarRouter
@@ -25,13 +26,27 @@ struct ChartView: View {
                     .padding()
                 Spacer()
             } else {
+                Text("Выберите интервал")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
                 Picker(selection: $viewModel.selectedInterval, label: Text("Выберите интервал")) {
                     ForEach(intervals, id: \.self) { interval in
                         Text(viewModel.intervalToString(interval))
                     }
                 }
+                .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
+                    segmentedControl.backgroundColor = .clear
+                    segmentedControl.tintColor = .systemBlue.withAlphaComponent(0.8)
+                    segmentedControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.8)
+                    segmentedControl.setTitleTextAttributes([
+                        NSAttributedString.Key.foregroundColor: UIColor.white
+                    ], for: .selected)
+                    segmentedControl.setTitleTextAttributes([
+                        NSAttributedString.Key.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)
+                    ], for: .normal)
+                })
                 .pickerStyle(.segmented)
-                .padding()
+                .padding(.horizontal, 10)
                 .onChange(of: viewModel.selectedInterval) { _ in
                     viewModel.updateChartData()
                 }

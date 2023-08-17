@@ -6,7 +6,6 @@
 import Foundation
 import SwiftUI
 
-// формат даты dd.MM.yyyy
 extension DateFormatter {
     static let expenseDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -15,7 +14,6 @@ extension DateFormatter {
     }()
 }
 
-// кнопка очистки текстового поля
 public struct ClearButton: ViewModifier {
     @Binding var text: String
     
@@ -32,7 +30,6 @@ public struct ClearButton: ViewModifier {
     }
 }
 
-// кастомный TextField
 extension TextField {
     func floatingPlaceholder(_ title: String, text: Binding<String>) -> some View {
         let binding = Binding<String>(

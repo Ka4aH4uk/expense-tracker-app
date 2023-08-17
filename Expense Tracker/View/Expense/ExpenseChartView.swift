@@ -5,6 +5,7 @@
 
 import SwiftUI
 import Charts
+import SwiftUIIntrospect
 
 struct ExpenseChartView: View {
     @Binding var showExpenseChart: Bool
@@ -33,15 +34,30 @@ struct ExpenseChartView: View {
                     .padding()
                 Spacer()
             } else {
-                Picker(selection: $selectedInterval, label: Text("Выберите интервал")) {
+                Text("Выберите интервал")
+                    .font(.headline)
+                    .multilineTextAlignment(.center)
+                Picker("Выберите интервал", selection: $selectedInterval) {
                     ForEach(intervals, id: \.self) { interval in
                         Text(viewModel.intervalToString(interval))
                     }
                 }
+                .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
+                    segmentedControl.backgroundColor = .clear
+                    segmentedControl.tintColor = .systemRed.withAlphaComponent(0.8)
+                    segmentedControl.selectedSegmentTintColor = .systemRed.withAlphaComponent(0.8)
+                    segmentedControl.setTitleTextAttributes([
+                        NSAttributedString.Key.foregroundColor: UIColor.white
+                    ], for: .selected)
+                    segmentedControl.setTitleTextAttributes([
+                        NSAttributedString.Key.foregroundColor: UIColor.systemRed.withAlphaComponent(0.7)
+                    ], for: .normal)
+                })
                 .pickerStyle(.segmented)
-                .padding()
-                .onChange(of: selectedInterval) { _ in
-                    viewModel.dataChart = viewModel.getFilteredExpenses()
+                .padding(.horizontal, 10)
+                .onChange(of: selectedInterval) { newValue in
+                    viewModel.selectedInterval = newValue
+                    viewModel.updateChartData()
                 }
                 
                 GroupBox ("\(viewModel.category.name): график расходов") {

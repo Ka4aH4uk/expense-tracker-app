@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02A208E22A8EB124009FCC26 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */; };
 		02A8ECD42A6D7650001E5661 /* Expense_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */; };
 		02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECD72A6D7652001E5661 /* Assets.xcassets */; };
 		02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECDA2A6D7652001E5661 /* Preview Assets.xcassets */; };
@@ -76,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02A8ED162A6EB0EB001E5661 /* Lottie in Frameworks */,
+				02A208E22A8EB124009FCC26 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,12 +150,12 @@
 		02A8ECE32A6D77EA001E5661 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */,
 				02A8ECF82A6D7A1B001E5661 /* ProfitViewModel.swift */,
 				02A8ED022A6D7DAA001E5661 /* ChartViewModel.swift */,
 				02A8ED062A6D8049001E5661 /* ExpenseViewModel.swift */,
 				02A8ED0A2A6D8CA4001E5661 /* ExpenseDetailViewModel.swift */,
 				02A8ED122A6D8F79001E5661 /* ExpenseChartViewModel.swift */,
-				02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -223,6 +225,7 @@
 			name = "Expense Tracker";
 			packageProductDependencies = (
 				02A8ED152A6EB0EB001E5661 /* Lottie */,
+				02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */,
 			);
 			productName = "Expense Tracker";
 			productReference = 02A8ECD02A6D7650001E5661 /* Expense Tracker.app */;
@@ -254,6 +257,7 @@
 			mainGroup = 02A8ECC72A6D7650001E5661;
 			packageReferences = (
 				02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 02A8ECD12A6D7650001E5661 /* Products */;
 			projectDirPath = "";
@@ -363,7 +367,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -417,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -517,6 +521,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
 		02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -528,6 +540,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = SwiftUIIntrospect;
+		};
 		02A8ED152A6EB0EB001E5661 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */;

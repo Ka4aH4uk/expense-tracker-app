@@ -34,57 +34,81 @@ class ChartViewModel: ObservableObject {
 
     private func getFilteredExpenses() -> [ChartsData] {
         let filteredExpenses = expenses.filter { expense in
-            let interval = selectedInterval
             let date = expense.date
             let currentDate = Date()
-            
-            switch interval {
+            let calendar = Calendar.current
+
+            switch selectedInterval {
             case .week:
-                return date >= Calendar.current.date(byAdding: .day, value: -7, to: currentDate)! && date <= currentDate
+                if let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)),
+                   let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek) {
+                    return date >= startOfWeek && date < endOfWeek
+                }
             case .month:
-                let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date()))!
-                let endDate = Calendar.current.date(byAdding: .month, value: 1, to: startDate)!
-                return date >= startDate && date < endDate
+                if let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+                   let endOfMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth) {
+                    return date >= startOfMonth && date < endOfMonth
+                }
             case .quarter:
-                let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date()))!
-                let endDate = Calendar.current.date(byAdding: .month, value: 3, to: startDate)!
-                return date >= startDate && date < endDate
-            default:
-                return true
+                if let startOfQuarter = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+                   let endOfQuarter = calendar.date(byAdding: .month, value: 3, to: startOfQuarter) {
+                    return date >= startOfQuarter && date < endOfQuarter
+                }
+            case .all:
+                if let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: currentDate)),
+                   let endOfYear = calendar.date(byAdding: .year, value: 1, to: startOfYear) {
+                    return date >= startOfYear && date < endOfYear
+                }
             }
+            
+            return false
         }
+        
         let sortedExpenses = filteredExpenses.sorted(by: { $0.date < $1.date })
         let chartsData = sortedExpenses.map { expense in
             ChartsData(date: expense.date, value: expense.amount)
         }
+        
         return chartsData
     }
     
     private func getFilteredProfits() -> [ChartsData] {
         let filteredProfits = profitCategories.filter { profit in
-            let interval = selectedInterval
             let date = profit.date
             let currentDate = Date()
-            
-            switch interval {
+            let calendar = Calendar.current
+
+            switch selectedInterval {
             case .week:
-                return date >= Calendar.current.date(byAdding: .day, value: -7, to: currentDate)! && date <= currentDate
+                if let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: currentDate)),
+                   let endOfWeek = calendar.date(byAdding: .day, value: 7, to: startOfWeek) {
+                    return date >= startOfWeek && date < endOfWeek
+                }
             case .month:
-                let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date()))!
-                let endDate = Calendar.current.date(byAdding: .month, value: 1, to: startDate)!
-                return date >= startDate && date < endDate
+                if let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+                   let endOfMonth = calendar.date(byAdding: .month, value: 1, to: startOfMonth) {
+                    return date >= startOfMonth && date < endOfMonth
+                }
             case .quarter:
-                let startDate = Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Date()))!
-                let endDate = Calendar.current.date(byAdding: .month, value: 3, to: startDate)!
-                return date >= startDate && date < endDate
-            default:
-                return true
+                if let startOfQuarter = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+                   let endOfQuarter = calendar.date(byAdding: .month, value: 3, to: startOfQuarter) {
+                    return date >= startOfQuarter && date < endOfQuarter
+                }
+            case .all:
+                if let startOfYear = calendar.date(from: calendar.dateComponents([.year], from: currentDate)),
+                   let endOfYear = calendar.date(byAdding: .year, value: 1, to: startOfYear) {
+                    return date >= startOfYear && date < endOfYear
+                }
             }
+            
+            return false
         }
+        
         let sortedExpenses = filteredProfits.sorted(by: { $0.date < $1.date })
         let chartsData = sortedExpenses.map { profit in
             ChartsData(date: profit.date, value: profit.amount)
         }
+        
         return chartsData
     }
 
