@@ -58,8 +58,7 @@ struct ExpenseView: View {
                                         Text(category.name)
                                             .font(.headline)
                                             .foregroundColor(isDarkMode ? .white : .black)
-                                            .padding(.vertical, 2)
-                                        Text("Кол-во платежей: \(category.expenses.count)")
+                                        Text("Кол-во платежей: \(category.numberOfExpenses)")
                                             .font(.caption2)
                                             .foregroundColor(.gray)
                                     }
