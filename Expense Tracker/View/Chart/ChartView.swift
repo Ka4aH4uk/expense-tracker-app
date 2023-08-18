@@ -26,32 +26,41 @@ struct ChartView: View {
                     .padding()
                 Spacer()
             } else {
-                Text("Выберите интервал")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                Picker(selection: $viewModel.selectedInterval, label: Text("Выберите интервал")) {
-                    ForEach(intervals, id: \.self) { interval in
-                        Text(viewModel.intervalToString(interval))
-                    }
-                }
-                .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
-                    segmentedControl.backgroundColor = .clear
-                    segmentedControl.tintColor = .systemBlue.withAlphaComponent(0.8)
-                    segmentedControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.8)
-                    segmentedControl.setTitleTextAttributes([
-                        NSAttributedString.Key.foregroundColor: UIColor.white
-                    ], for: .selected)
-                    segmentedControl.setTitleTextAttributes([
-                        NSAttributedString.Key.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)
-                    ], for: .normal)
-                })
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 10)
-                .onChange(of: viewModel.selectedInterval) { _ in
-                    viewModel.updateChartData()
-                }
-                
                 GroupBox ("График доходов и расходов") {
+                    Divider()
+                    Spacer()
+                    HStack {
+                        Text("Выберите интервал")
+                            .font(.callout)
+                            .multilineTextAlignment(.center)
+                        Image(systemName: "calendar")
+                    }
+                    .padding(5)
+                    
+                    Picker("Интервал", selection: $viewModel.selectedInterval) {
+                        ForEach(intervals, id: \.self) { interval in
+                            Text(viewModel.intervalToString(interval))
+                        }
+                    }
+                    .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
+                        segmentedControl.backgroundColor = .clear
+                        segmentedControl.tintColor = .systemBlue.withAlphaComponent(0.8)
+                        segmentedControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.8)
+                        segmentedControl.setTitleTextAttributes([
+                            NSAttributedString.Key.foregroundColor: UIColor.white
+                        ], for: .selected)
+                        segmentedControl.setTitleTextAttributes([
+                            NSAttributedString.Key.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)
+                        ], for: .normal)
+                    })
+                    .pickerStyle(.segmented)
+                    .onChange(of: viewModel.selectedInterval) { _ in
+                        viewModel.updateChartData()
+                    }
+                    .padding(.bottom, 10)
+                    Divider()
+                    Spacer()
+                    
                     Chart {
                         ForEach(viewModel.expenseData) { data in
                             LineMark(
@@ -110,6 +119,17 @@ struct ChartView: View {
                     }
                     .frame(height: 500)
                 }
+                .background(
+                    Rectangle()
+                        .fill(Color.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color.gray.opacity(0.7),
+                            radius: 6,
+                            x: 0,
+                            y: 0
+                        )
+                )
                 .padding(10)
             }
             Spacer()

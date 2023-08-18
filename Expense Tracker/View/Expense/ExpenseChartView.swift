@@ -34,33 +34,42 @@ struct ExpenseChartView: View {
                     .padding()
                 Spacer()
             } else {
-                Text("Выберите интервал")
-                    .font(.headline)
-                    .multilineTextAlignment(.center)
-                Picker("Выберите интервал", selection: $selectedInterval) {
-                    ForEach(intervals, id: \.self) { interval in
-                        Text(viewModel.intervalToString(interval))
+                GroupBox ("График расходов") {
+                    Divider()
+                    Spacer()
+                    HStack {
+                        Text("Выберите интервал")
+                            .font(.callout)
+                            .multilineTextAlignment(.center)
+                            Image(systemName: "calendar")
                     }
-                }
-                .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
-                    segmentedControl.backgroundColor = .clear
-                    segmentedControl.tintColor = .systemRed.withAlphaComponent(0.8)
-                    segmentedControl.selectedSegmentTintColor = .systemRed.withAlphaComponent(0.8)
-                    segmentedControl.setTitleTextAttributes([
-                        NSAttributedString.Key.foregroundColor: UIColor.white
-                    ], for: .selected)
-                    segmentedControl.setTitleTextAttributes([
-                        NSAttributedString.Key.foregroundColor: UIColor.systemRed.withAlphaComponent(0.7)
-                    ], for: .normal)
-                })
-                .pickerStyle(.segmented)
-                .padding(.horizontal, 10)
-                .onChange(of: selectedInterval) { newValue in
-                    viewModel.selectedInterval = newValue
-                    viewModel.updateChartData()
-                }
+                    .padding(5)
+                    
+                    Picker("Интервал", selection: $selectedInterval) {
+                        ForEach(intervals, id: \.self) { interval in
+                            Text(viewModel.intervalToString(interval))
+                        }
+                    }
+                    .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
+                        segmentedControl.backgroundColor = .clear
+                        segmentedControl.tintColor = .systemRed.withAlphaComponent(0.8)
+                        segmentedControl.selectedSegmentTintColor = .systemRed.withAlphaComponent(0.8)
+                        segmentedControl.setTitleTextAttributes([
+                            NSAttributedString.Key.foregroundColor: UIColor.white
+                        ], for: .selected)
+                        segmentedControl.setTitleTextAttributes([
+                            NSAttributedString.Key.foregroundColor: UIColor.systemRed.withAlphaComponent(0.7)
+                        ], for: .normal)
+                    })
+                    .pickerStyle(.segmented)
+                    .onChange(of: selectedInterval) { newValue in
+                        viewModel.selectedInterval = newValue
+                        viewModel.updateChartData()
+                    }
+                    .padding(.bottom, 10)
+                    Divider()
+                    Spacer()
                 
-                GroupBox ("\(viewModel.category.name): график расходов") {
                     Chart {
                         ForEach(viewModel.dataChart) { data in
                             LineMark(
@@ -98,10 +107,22 @@ struct ExpenseChartView: View {
                     }
                     .frame(height: 500)
                 }
+                .background(
+                    Rectangle()
+                        .fill(Color.white)
+                        .cornerRadius(12)
+                        .shadow(
+                            color: Color.gray.opacity(0.7),
+                            radius: 6,
+                            x: 0,
+                            y: 0
+                        )
+                )
                 .padding(10)
             }
             Spacer()
         }
+        .navigationBarTitle("\(viewModel.category.name)")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -122,23 +143,6 @@ struct ExpenseChartView: View {
 
 struct ExpenseChartView_Previews: PreviewProvider {
     static var previews: some View {
-        let category = ExpenseCategory(name: "Категория")
-        let dataChart: [ExpenseData] = [
-            ExpenseData(date: Date(), value: 50.0),
-            ExpenseData(date: Date().addingTimeInterval(86400), value: 75.0),
-            ExpenseData(date: Date().addingTimeInterval(2 * 86400), value: 100.0)
-        ]
-        let viewModel = ExpenseChartViewModel(category: category)
-        viewModel.dataChart = dataChart
-        
-        return ExpenseChartView(category: category, showExpenseChart: .constant(true))
-            .environmentObject(viewModel)
+        ExpenseChartView(category: ExpenseCategory(name: ""), showExpenseChart: .constant(true))
     }
 }
-
-//struct ExpenseChartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let category = ExpenseCategory(name: "")
-//        ExpenseChartView(category: category, showExpenseChart: .constant(true))
-//    }
-//}
