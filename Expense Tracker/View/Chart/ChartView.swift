@@ -20,6 +20,7 @@ struct ChartView: View {
                 Image("chart")
                     .resizable()
                     .scaledToFit()
+                    .frame(width: 300)
                 Text("График доходов и расходов -\n это как узнать, сколько стоит твоя жизнь каждый месяц")
                     .multilineTextAlignment(.center)
                     .font(.headline)
