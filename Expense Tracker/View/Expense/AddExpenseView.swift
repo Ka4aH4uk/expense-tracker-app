@@ -77,12 +77,9 @@ struct AddExpenseView: View {
     }
 }
 
-//struct AddExpenseView_Previews: PreviewProvider {
-//    @State private static var showSheet = true
-//    @State private static var expenses: [Expense] = []
-//    @State private static var allExpenses: [Expense] = []
-//
-//    static var previews: some View {
-//        AddExpenseView(viewModel: ExpenseDetailViewModel(category: ExpenseCategory.self, showSheet: $showSheet))
-//    }
-//}
+struct AddExpenseView_Previews: PreviewProvider {
+    static var previews: some View {
+        let viewModel = ExpenseDetailViewModel(category: ExpenseCategory(name: "Категория"))
+        return AddExpenseView(viewModel: viewModel, showSheet: .constant(true))
+    }
+}

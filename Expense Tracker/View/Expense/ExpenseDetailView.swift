@@ -97,6 +97,9 @@ struct ExpenseDetailView: View {
                 }
             }
         }
+        .onDisappear {
+            dismiss()
+        }
     }
 }
 

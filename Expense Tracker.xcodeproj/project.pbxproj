@@ -128,8 +128,8 @@
 			children = (
 				02A8ECEE2A6D792D001E5661 /* Profit.swift */,
 				02A8ECF42A6D79C6001E5661 /* ChartsData.swift */,
-				02A8ECF22A6D7990001E5661 /* Expense.swift */,
 				02A8ECF02A6D7955001E5661 /* ExpenseCategory.swift */,
+				02A8ECF22A6D7990001E5661 /* Expense.swift */,
 				02A8ECFA2A6D7A85001E5661 /* ExpenseData.swift */,
 				02A8ECF62A6D79E7001E5661 /* Interval.swift */,
 			);

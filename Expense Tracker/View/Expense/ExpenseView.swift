@@ -8,7 +8,6 @@ import SwiftUI
 struct ExpenseView: View {
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @AppStorage("isChangeTheme") private var isChangeTheme: Bool = false
-    @EnvironmentObject var router: TabBarRouter
     @StateObject private var viewModel = ExpenseViewModel()
     @State private var showCostsModal = false
     @State private var categoryText = ""
