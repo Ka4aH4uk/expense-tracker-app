@@ -52,8 +52,11 @@ struct ExpenseView: View {
                             destination: ExpenseDetailView(category: category),
                             label: {
                                 HStack {
-                                    Image(systemName: "diamond")
-                                        .font(.title2)
+                                    if let iconName = category.iconName {
+                                        Image(iconName)
+                                            .resizable()
+                                            .frame(width: 35, height: 35)
+                                    }
                                     VStack(alignment: .leading) {
                                         Text(category.name)
                                             .font(.headline)
@@ -84,8 +87,11 @@ struct ExpenseView: View {
                 .cornerRadius(30)
                 .padding()
                 .sheet(isPresented: $showCostsModal) {
-                    AddCostsView(showSheet: $showCostsModal, categoryText: $categoryText, onAddCategory: viewModel.addCategory)
-                        .presentationDetents([.height(160)])
+                    AddCostsView(showSheet: $showCostsModal, categoryText: $categoryText, onAddCategory: { name, iconName in
+                        viewModel.addCategory(name: name, iconName: iconName)
+                    })
+//                    .presentationDetents([.height(160)])
+                    .presentationDetents([.medium])
                     Spacer()
                 }
             }

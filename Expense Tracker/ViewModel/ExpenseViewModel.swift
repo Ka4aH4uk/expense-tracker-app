@@ -40,8 +40,8 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
-    func addCategory(name: String) {
-        let newCategory = ExpenseCategory(name: name)
+    func addCategory(name: String, iconName: String?) {
+        let newCategory = ExpenseCategory(name: name, iconName: iconName)
         expenseCategories.append(newCategory)
         saveCategories()
     }

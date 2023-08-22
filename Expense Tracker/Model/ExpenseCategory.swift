@@ -9,6 +9,7 @@ struct ExpenseCategory: Codable, Identifiable {
     var id = UUID()
     let name: String
     var expenses: [Expense] = []
+    var iconName: String?
 
     var numberOfExpenses: Int {
         expenses.count
