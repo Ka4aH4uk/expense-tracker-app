@@ -9,6 +9,7 @@ struct ExpenseView: View {
     @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @AppStorage("isChangeTheme") private var isChangeTheme: Bool = false
     @StateObject private var viewModel = ExpenseViewModel()
+    @State private var isEditing = false
     @State private var showCostsModal = false
     @State private var categoryText = ""
     
@@ -16,6 +17,14 @@ struct ExpenseView: View {
         NavigationView {
             VStack {
                 HStack {
+                    Button(action: {
+                        isEditing.toggle()
+                    }) {
+                        Image(systemName: isEditing ? "checkmark.seal.fill" : "wrench.and.screwdriver")
+                            .font(.title)
+                    }
+                    .padding(.horizontal)
+
                     Spacer()
                     Text("Расходы")
                         .font(.largeTitle).bold()
@@ -36,6 +45,7 @@ struct ExpenseView: View {
                             }
                             .padding(.leading, 40)
                         }
+                    Spacer()
                 }
                 Spacer()
                 
@@ -47,28 +57,36 @@ struct ExpenseView: View {
                         .multilineTextAlignment(.center)
                         .padding()
                 } else {
-                    List(viewModel.expenseCategories) { category in
-                        NavigationLink(
-                            destination: ExpenseDetailView(category: category),
-                            label: {
-                                HStack {
-                                    if let iconName = category.iconName {
-                                        Image(iconName)
-                                            .resizable()
-                                            .frame(width: 35, height: 35)
+                    List {
+                        ForEach(viewModel.expenseCategories) { category in
+                            NavigationLink(
+                                destination: ExpenseDetailView(category: category),
+                                label: {
+                                    HStack {
+                                        if let iconName = category.iconName {
+                                            Image(iconName)
+                                                .resizable()
+                                                .frame(width: 35, height: 35)
+                                        }
+                                        VStack(alignment: .leading) {
+                                            Text(category.name)
+                                                .font(.headline)
+                                                .foregroundColor(isDarkMode ? .white : .black)
+                                            Text("Кол-во платежей: \(category.numberOfExpenses)")
+                                                .font(.caption2)
+                                                .foregroundColor(.gray)
+                                        }
                                     }
-                                    VStack(alignment: .leading) {
-                                        Text(category.name)
-                                            .font(.headline)
-                                            .foregroundColor(isDarkMode ? .white : .black)
-                                        Text("Кол-во платежей: \(category.numberOfExpenses)")
-                                            .font(.caption2)
-                                            .foregroundColor(.gray)
-                                    }
-                                }
-                            })
-                        .foregroundColor(.blue)
-                        .frame(height: 45)
+                                })
+                            .foregroundColor(.blue)
+                            .frame(height: 45)
+                        }
+                        .onDelete(perform: isEditing ? delete : nil)
+                        .onMove(perform: isEditing ? move : nil)
+//                        .swipeActions(edge: .trailing) {
+//                            Button(role: .destructive, action: {}, label: { Label("Delete", systemImage: "trash") })
+//
+//                            }
                     }
                     .listStyle(.plain)
                 }
@@ -90,7 +108,6 @@ struct ExpenseView: View {
                     AddCostsView(showSheet: $showCostsModal, categoryText: $categoryText, onAddCategory: { name, iconName in
                         viewModel.addCategory(name: name, iconName: iconName)
                     })
-//                    .presentationDetents([.height(160)])
                     .presentationDetents([.medium])
                     Spacer()
                 }
@@ -99,6 +116,14 @@ struct ExpenseView: View {
                 viewModel.saveCategories()
             }
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        viewModel.expenseCategories.remove(atOffsets: offsets)
+    }
+    
+    func move(from source: IndexSet, to destination: Int) {
+        viewModel.expenseCategories.move(fromOffsets: source, toOffset: destination)
     }
 }
 

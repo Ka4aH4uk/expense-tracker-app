@@ -8,7 +8,6 @@ import Charts
 import SwiftUIIntrospect
 
 struct ChartView: View {
-    @EnvironmentObject var router: TabBarRouter
     @ObservedObject private var viewModel = ChartViewModel()
     let intervals: [Interval] = [.week, .month, .quarter, .all]
     
