@@ -17,35 +17,47 @@ struct ExpenseView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Button(action: {
+                    Button {
                         isEditing.toggle()
-                    }) {
-                        Image(systemName: isEditing ? "checkmark.seal.fill" : "wrench.and.screwdriver")
-                            .font(.title)
+                    } label: {
+                        if isEditing {
+                            LottieView(name: "done")
+                                .scaleEffect(0.13)
+                                .opacity(0.9)
+                                .frame(width: 20, height: 20)
+                        } else {
+                            LottieView(name: "edit", animationSpeed: 1)
+                                .scaleEffect(0.8)
+                                .opacity(0.9)
+                                .frame(width: 20, height: 20)
+                        }
                     }
-                    .padding(.horizontal)
+                    .padding(.leading, 30)
 
                     Spacer()
                     Text("Расходы")
                         .font(.largeTitle).bold()
                         .padding()
                     Spacer()
-                        .overlay {
-                            Button {
-                                isDarkMode.toggle()
-                                isChangeTheme.toggle()
-                            } label: {
-                                if isChangeTheme {
-                                    LottieView(name: "sun")
-                                        .scaleEffect(1.5)
-                                } else {
-                                    LottieView(name: "moon")
-                                        .scaleEffect(2)
-                                }
-                            }
-                            .padding(.leading, 40)
+                    
+                    Button {
+                        isDarkMode.toggle()
+                        isChangeTheme.toggle()
+                    } label: {
+                        if isChangeTheme {
+                            LottieView(name: "sun")
+                                .scaleEffect(1.3)
+                                .opacity(0.8)
+                                .frame(width: 20, height: 20)
+
+                        } else {
+                            LottieView(name: "moon")
+                                .scaleEffect(1.6)
+                                .opacity(0.8)
+                                .frame(width: 20, height: 20)
                         }
-                    Spacer()
+                    }
+                    .padding(.trailing, 30)
                 }
                 Spacer()
                 
@@ -114,6 +126,7 @@ struct ExpenseView: View {
             }
             .onDisappear {
                 viewModel.saveCategories()
+                isEditing = false
             }
         }
     }
