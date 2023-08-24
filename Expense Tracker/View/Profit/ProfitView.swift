@@ -33,7 +33,7 @@ struct ProfitView: View {
                 Image(systemName: "rublesign.circle")
                     .font(.largeTitle)
                 Text("Как говорится, доходы у меня настолько маленькие, что мои налоговые декларации вмещаются в твиттер")
-                    .font(.headline)
+                    .font(.body)
                     .multilineTextAlignment(.center)
                     .padding()
             } else {

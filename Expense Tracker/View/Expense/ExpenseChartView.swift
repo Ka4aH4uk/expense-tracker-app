@@ -25,12 +25,18 @@ struct ExpenseChartView: View {
             Spacer()
             
             if viewModel.dataChart.isEmpty {
-                Image("chart2")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300)
+                Spacer()
+                LottieView(name: "chart2", loopMode: .loop, animationSpeed: 0.5)
+                    .scaleEffect(0.2)
+                    .frame(height: 200)
+                    .padding()
+
+//                Image("chart2")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 300)
                 Text("Этот график покажет, насколько успешно\n Вы продолжаете бороться с соблазнами тратить\n все свои деньги на ненужные вещи")
-                    .font(.headline)
+                    .font(.body)
                     .multilineTextAlignment(.center)
                     .padding()
                 Spacer()

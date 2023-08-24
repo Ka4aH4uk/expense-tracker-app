@@ -44,7 +44,7 @@ struct ExpenseDetailView: View {
                         Image(systemName: "list.clipboard")
                             .font(.largeTitle)
                         Text("А пока список пуст, давайте просто\n посмотрим в окно и поймем, сколько ошибок допустил метеоролог")
-                            .font(.headline)
+                            .font(.body)
                             .multilineTextAlignment(.center)
                             .padding()
                         Spacer()

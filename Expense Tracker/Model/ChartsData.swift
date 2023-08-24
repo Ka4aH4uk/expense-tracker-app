@@ -5,8 +5,8 @@
 
 import Foundation
 
-struct ChartsData: Identifiable {
-    let id = UUID()
+struct ChartsData: Codable, Identifiable {
+    var id = UUID()
     let date: Date
     var value: Double
 }

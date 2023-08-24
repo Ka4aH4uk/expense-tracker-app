@@ -16,13 +16,18 @@ struct ChartView: View {
             Spacer()
             
             if viewModel.chartsData.isEmpty {
-                Image("chart")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 300)
+                Spacer()
+                LottieView(name: "chart", loopMode: .loop)
+                    .scaleEffect(0.5)
+                    .frame(height: 180)
+                    .padding()
+//                Image("chart")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 300)
                 Text("График доходов и расходов -\n это как узнать, сколько стоит твоя жизнь каждый месяц")
                     .multilineTextAlignment(.center)
-                    .font(.headline)
+                    .font(.body)
                     .padding()
                 Spacer()
             } else {
@@ -67,7 +72,7 @@ struct ChartView: View {
                                 x: .value("Date Expense", data.date),
                                 y: .value("Expense", data.value)
                             )
-                            .interpolationMethod(.cardinal)
+                            .interpolationMethod(.catmullRom)
                             .foregroundStyle(by: .value("Expense", "Расходы"))
                             .lineStyle(.init(lineWidth: 5))
                             .symbol {
@@ -81,7 +86,7 @@ struct ChartView: View {
                                 x: .value("Date Expense", data.date),
                                 y: .value("Expense", data.value)
                             )
-                            .interpolationMethod(.cardinal)
+                            .interpolationMethod(.catmullRom)
                             .foregroundStyle(
                                 .linearGradient(colors: [Color(.red).opacity(0.5),
                                                          Color(.orange).opacity(0.3)],
@@ -95,7 +100,7 @@ struct ChartView: View {
                                 x: .value("Date Profit", data.date),
                                 y: .value("Profit", data.value)
                             )
-                            .interpolationMethod(.cardinal)
+                            .interpolationMethod(.catmullRom)
                             .foregroundStyle(by: .value("Profit", "Доходы"))
                             .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
                             .symbol {

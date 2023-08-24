@@ -33,6 +33,7 @@ struct ExpenseView: View {
                         }
                     }
                     .padding(.leading, 30)
+                    .disabled(viewModel.expenseCategories.isEmpty)
 
                     Spacer()
                     Text("Расходы")
@@ -65,7 +66,7 @@ struct ExpenseView: View {
                     Image(systemName: "cart.badge.plus")
                         .font(.largeTitle)
                     Text("Список еще не готов, но мы можем\n предположить, что жадность бесконечна,\n как и список количества покупок")
-                        .font(.headline)
+                        .font(.body)
                         .multilineTextAlignment(.center)
                         .padding()
                 } else {
@@ -132,7 +133,8 @@ struct ExpenseView: View {
     }
     
     func delete(at offsets: IndexSet) {
-        viewModel.expenseCategories.remove(atOffsets: offsets)
+        viewModel.deleteCategory(at: offsets)
+        isEditing = false
     }
     
     func move(from source: IndexSet, to destination: Int) {

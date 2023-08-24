@@ -10,6 +10,8 @@
 		02A208E22A8EB124009FCC26 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */; };
 		02A208E62A96B1EB009FCC26 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208E42A96B1EB009FCC26 /* done.json */; };
 		02A208E82A96B9C4009FCC26 /* edit.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208E72A96B9C4009FCC26 /* edit.json */; };
+		02A208EC2A97760A009FCC26 /* chart2.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208EB2A977609009FCC26 /* chart2.json */; };
+		02A208EE2A977A47009FCC26 /* chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208ED2A977A47009FCC26 /* chart.json */; };
 		02A8ECD42A6D7650001E5661 /* Expense_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */; };
 		02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECD72A6D7652001E5661 /* Assets.xcassets */; };
 		02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECDA2A6D7652001E5661 /* Preview Assets.xcassets */; };
@@ -44,6 +46,8 @@
 /* Begin PBXFileReference section */
 		02A208E42A96B1EB009FCC26 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 		02A208E72A96B9C4009FCC26 /* edit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edit.json; sourceTree = "<group>"; };
+		02A208EB2A977609009FCC26 /* chart2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart2.json; sourceTree = "<group>"; };
+		02A208ED2A977A47009FCC26 /* chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart.json; sourceTree = "<group>"; };
 		02A8ECD02A6D7650001E5661 /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense_TrackerApp.swift; sourceTree = "<group>"; };
 		02A8ECD72A6D7652001E5661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -206,6 +210,8 @@
 			children = (
 				02A8ED192A6EB6DF001E5661 /* LottieView.swift */,
 				02A8ED302A6FFB5F001E5661 /* sun.json */,
+				02A208EB2A977609009FCC26 /* chart2.json */,
+				02A208ED2A977A47009FCC26 /* chart.json */,
 				02A208E72A96B9C4009FCC26 /* edit.json */,
 				02A208E42A96B1EB009FCC26 /* done.json */,
 				02A8ED2E2A6FFA76001E5661 /* moon.json */,
@@ -283,8 +289,10 @@
 				02A8ED312A6FFB60001E5661 /* sun.json in Resources */,
 				02A208E62A96B1EB009FCC26 /* done.json in Resources */,
 				02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */,
+				02A208EE2A977A47009FCC26 /* chart.json in Resources */,
 				02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */,
 				02A8ED2F2A6FFA76001E5661 /* moon.json in Resources */,
+				02A208EC2A97760A009FCC26 /* chart2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

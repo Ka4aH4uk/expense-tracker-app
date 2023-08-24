@@ -20,7 +20,8 @@ class ChartViewModel: ObservableObject {
     }
     
     private func loadExpenses() {
-        if let savedExpenses = UserDefaults.standard.data(forKey: "allExpenses"), let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
+        if let savedExpenses = UserDefaults.standard.data(forKey: "allExpenses"),
+            let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
             self.expenses = loadedExpenses
         }
     }
