@@ -7,6 +7,7 @@ import SwiftUI
 
 struct TabBar: View {
     @StateObject var router: TabBarRouter
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
 
     var body: some View {
         TabView(selection: $router.tabSelection) {
@@ -28,6 +29,7 @@ struct TabBar: View {
                 }
                 .tag(TabSelection.espense)
         }
+        .accentColor(isDarkMode ? .white.opacity(0.9) : .blue.opacity(0.9))
         .environmentObject(router)
     }
 }

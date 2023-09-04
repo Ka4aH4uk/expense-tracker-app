@@ -8,6 +8,7 @@ import SwiftUI
 struct ProfitView: View {
     @StateObject private var viewModel = ProfitViewModel()
     @State private var showProfitModal = false
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
 
     var body: some View {
         VStack {
@@ -66,6 +67,7 @@ struct ProfitView: View {
             .frame(width: 350)
             .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.red]), startPoint: .leading, endPoint: .trailing))
             .cornerRadius(30)
+            .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
             .padding()
             .sheet(isPresented: $showProfitModal) {
                 AddProfitView(showSheet: $showProfitModal) { amount, date in

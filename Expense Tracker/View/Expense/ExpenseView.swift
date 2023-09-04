@@ -34,7 +34,7 @@ struct ExpenseView: View {
                     }
                     .padding(.leading, 30)
                     .disabled(viewModel.expenseCategories.isEmpty)
-
+                    
                     Spacer()
                     Text("Расходы")
                         .font(.largeTitle).bold()
@@ -50,7 +50,7 @@ struct ExpenseView: View {
                                 .scaleEffect(1.3)
                                 .opacity(0.8)
                                 .frame(width: 20, height: 20)
-
+                            
                         } else {
                             LottieView(name: "moon")
                                 .scaleEffect(1.6)
@@ -79,27 +79,33 @@ struct ExpenseView: View {
                                         if let iconName = category.iconName {
                                             Image(iconName)
                                                 .resizable()
-                                                .frame(width: 35, height: 35)
+                                                .frame(width: 45, height: 45)
                                         }
                                         VStack(alignment: .leading) {
                                             Text(category.name)
                                                 .font(.headline)
-                                                .foregroundColor(isDarkMode ? .white : .black)
+                                                .lineLimit(1)
+                                                .foregroundColor(.white)
+                                                .padding(.vertical, 0.5)
                                             Text("Кол-во платежей: \(category.numberOfExpenses)")
                                                 .font(.caption2)
-                                                .foregroundColor(.gray)
+                                                .foregroundColor(.white.opacity(0.8))
                                         }
                                     }
                                 })
-                            .foregroundColor(.blue)
-                            .frame(height: 45)
+                            .padding(15)
+                            .background(
+                                LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .cornerRadius(30)
+                            )
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                         }
                         .onDelete(perform: isEditing ? delete : nil)
                         .onMove(perform: isEditing ? move : nil)
 //                        .swipeActions(edge: .trailing) {
 //                            Button(role: .destructive, action: {}, label: { Label("Delete", systemImage: "trash") })
-//
-//                            }
+//                        }
                     }
                     .listStyle(.plain)
                 }
@@ -114,8 +120,9 @@ struct ExpenseView: View {
                 }
                 .padding()
                 .frame(width: 350)
-                .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                .background(LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .leading, endPoint: .trailing))
                 .cornerRadius(30)
+                .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
                 .padding()
                 .sheet(isPresented: $showCostsModal) {
                     AddCostsView(showSheet: $showCostsModal, categoryText: $categoryText, onAddCategory: { name, iconName in
@@ -133,7 +140,7 @@ struct ExpenseView: View {
     }
     
     func delete(at offsets: IndexSet) {
-        viewModel.deleteCategory(at: offsets)
+        viewModel.expenseCategories.remove(atOffsets: offsets)
         isEditing = false
     }
     
@@ -145,6 +152,7 @@ struct ExpenseView: View {
 struct ExpenseView_Previews: PreviewProvider {
     static var previews: some View {
         ExpenseView()
+            .preferredColorScheme(.dark)
             .environmentObject(TabBarRouter())
     }
 }

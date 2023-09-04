@@ -9,6 +9,7 @@ struct ExpenseDetailView: View {
     @ObservedObject private var viewModel: ExpenseDetailViewModel
     @State private var showExpensesModal = false
     @State private var showExpenseChart = false
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
     @Environment(\.dismiss) private var dismiss
     
     init(category: ExpenseCategory) {
@@ -84,6 +85,7 @@ struct ExpenseDetailView: View {
                     .padding()
                 }
                 .padding()
+                .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
                 .sheet(isPresented: $showExpensesModal) {
                     AddExpenseView(viewModel: viewModel, showSheet: $showExpensesModal)
                         .presentationDetents([.height(270)])

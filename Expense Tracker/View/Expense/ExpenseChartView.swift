@@ -31,10 +31,6 @@ struct ExpenseChartView: View {
                     .frame(height: 200)
                     .padding()
 
-//                Image("chart2")
-//                    .resizable()
-//                    .scaledToFit()
-//                    .frame(width: 300)
                 Text("Этот график покажет, насколько успешно\n Вы продолжаете бороться с соблазнами тратить\n все свои деньги на ненужные вещи")
                     .font(.body)
                     .multilineTextAlignment(.center)
