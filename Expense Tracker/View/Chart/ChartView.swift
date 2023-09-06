@@ -40,7 +40,7 @@ struct ChartView: View {
                     
                     Picker("Интервал", selection: $viewModel.selectedInterval) {
                         ForEach(intervals, id: \.self) { interval in
-                            Text(viewModel.intervalToString(interval))
+                            Text(Interval.intervalToString(interval))
                         }
                     }
                     .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
@@ -62,63 +62,7 @@ struct ChartView: View {
                     Divider()
                     Spacer()
                     
-                    Chart {
-                        ForEach(viewModel.expenseData) { data in
-                            LineMark(
-                                x: .value("Date Expense", data.date),
-                                y: .value("Expense", data.value)
-                            )
-                            .interpolationMethod(.catmullRom)
-                            .foregroundStyle(by: .value("Expense", "Расходы"))
-                            .lineStyle(.init(lineWidth: 5))
-                            .symbol {
-                                Circle()
-                                    .fill(.red)
-                                    .frame(width: 8)
-                                    .shadow(radius: 2)
-                            }
-                            
-                            AreaMark(
-                                x: .value("Date Expense", data.date),
-                                y: .value("Expense", data.value)
-                            )
-                            .interpolationMethod(.catmullRom)
-                            .foregroundStyle(
-                                .linearGradient(colors: [Color(.red).opacity(0.5),
-                                                         Color(.orange).opacity(0.3)],
-                                                startPoint: .top,
-                                                endPoint: .bottom)
-                            )
-                        }
-                        
-                        ForEach(viewModel.profitData) { data in
-                            LineMark(
-                                x: .value("Date Profit", data.date),
-                                y: .value("Profit", data.value)
-                            )
-                            .interpolationMethod(.catmullRom)
-                            .foregroundStyle(by: .value("Profit", "Доходы"))
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
-                            .symbol {
-                                Circle()
-                                    .fill(.blue)
-                                    .frame(width: 8)
-                                    .shadow(radius: 2)
-                            }
-                        }
-                    }
-                    .chartForegroundStyleScale([
-                        "Доходы": Color(.blue),
-                        "Расходы": Color(.red)
-                    ])
-                    .chartLegend(position: .bottom, alignment: .center)
-                    .chartBackground { chartProxy in
-                        Color.green.opacity(0.1)
-                    }
-                    .chartYAxis {
-                        AxisMarks(position: .leading, values: .automatic(desiredCount: 8))
-                    }
-                    .frame(height: 500)
+                    ChartWithProfitAndExpensesView()
                 }
                 .background(
                     Rectangle()
@@ -135,6 +79,70 @@ struct ChartView: View {
             }
             Spacer()
         }
+    }
+}
+
+struct ChartWithProfitAndExpensesView: View {
+    @ObservedObject private var viewModel = ChartViewModel()
+
+    var body: some View {
+        Chart {
+            ForEach(viewModel.expenseData) { data in
+                LineMark(
+                    x: .value("Date Expense", data.date),
+                    y: .value("Expense", data.value)
+                )
+                .interpolationMethod(.catmullRom)
+                .foregroundStyle(by: .value("Expense", "Расходы"))
+                .lineStyle(.init(lineWidth: 5))
+                .symbol {
+                    Circle()
+                        .fill(.red)
+                        .frame(width: 8)
+                        .shadow(radius: 2)
+                }
+                
+                AreaMark(
+                    x: .value("Date Expense", data.date),
+                    y: .value("Expense", data.value)
+                )
+                .interpolationMethod(.catmullRom)
+                .foregroundStyle(
+                    .linearGradient(colors: [Color(.red).opacity(0.5),
+                                             Color(.orange).opacity(0.3)],
+                                    startPoint: .top,
+                                    endPoint: .bottom)
+                )
+            }
+            
+            ForEach(viewModel.profitData) { data in
+                LineMark(
+                    x: .value("Date Profit", data.date),
+                    y: .value("Profit", data.value)
+                )
+                .interpolationMethod(.catmullRom)
+                .foregroundStyle(by: .value("Profit", "Доходы"))
+                .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
+                .symbol {
+                    Circle()
+                        .fill(.blue)
+                        .frame(width: 8)
+                        .shadow(radius: 2)
+                }
+            }
+        }
+        .chartForegroundStyleScale([
+            "Доходы": Color(.blue),
+            "Расходы": Color(.red)
+        ])
+        .chartLegend(position: .bottom, alignment: .center)
+        .chartBackground { chartProxy in
+            Color.green.opacity(0.1)
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading, values: .automatic(desiredCount: 8))
+        }
+        .frame(height: 500)
     }
 }
 

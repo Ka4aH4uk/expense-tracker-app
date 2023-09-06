@@ -44,17 +44,4 @@ class ExpenseChartViewModel: ObservableObject {
         }
         return expenseData
     }
-
-    func intervalToString(_ interval: Interval) -> String {
-        switch interval {
-        case .week:
-            return "Неделя"
-        case .month:
-            return "Месяц"
-        case .quarter:
-            return "Квартал"
-        case .all:
-            return "Всё время"
-        }
-    }
 }

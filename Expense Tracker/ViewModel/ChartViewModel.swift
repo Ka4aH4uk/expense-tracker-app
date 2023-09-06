@@ -66,17 +66,4 @@ class ChartViewModel: ObservableObject {
         profitData = getFilteredProfits()
         chartsData = expenseData + profitData
     }
-    
-    func intervalToString(_ interval: Interval) -> String {
-        switch interval {
-        case .week:
-            return "Неделя"
-        case .month:
-            return "Месяц"
-        case .quarter:
-            return "Квартал"
-        case .all:
-            return "Все время"
-        }
-    }
 }

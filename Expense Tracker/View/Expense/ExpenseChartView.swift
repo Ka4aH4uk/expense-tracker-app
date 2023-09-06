@@ -5,7 +5,6 @@
 
 import SwiftUI
 import Charts
-import SwiftUIIntrospect
 
 struct ExpenseChartView: View {
     @Binding var showExpenseChart: Bool
@@ -48,23 +47,7 @@ struct ExpenseChartView: View {
                     }
                     .padding(5)
                     
-                    Picker("Интервал", selection: $selectedInterval) {
-                        ForEach(intervals, id: \.self) { interval in
-                            Text(viewModel.intervalToString(interval))
-                        }
-                    }
-                    .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
-                        segmentedControl.backgroundColor = .clear
-                        segmentedControl.tintColor = .systemRed.withAlphaComponent(0.8)
-                        segmentedControl.selectedSegmentTintColor = .systemRed.withAlphaComponent(0.8)
-                        segmentedControl.setTitleTextAttributes([
-                            NSAttributedString.Key.foregroundColor: UIColor.white
-                        ], for: .selected)
-                        segmentedControl.setTitleTextAttributes([
-                            NSAttributedString.Key.foregroundColor: UIColor.systemRed.withAlphaComponent(0.7)
-                        ], for: .normal)
-                    })
-                    .pickerStyle(.segmented)
+                    ExpenseCustomSegmentedControl(selectedInterval: $selectedInterval, intervals: intervals)
                     .onChange(of: selectedInterval) { newValue in
                         viewModel.selectedInterval = newValue
                         viewModel.updateChartData()
@@ -141,6 +124,41 @@ struct ExpenseChartView: View {
         .onAppear {
             viewModel.updateChartData()
         }
+    }
+}
+
+struct ExpenseCustomSegmentedControl: View {
+    @Binding var selectedInterval: Interval
+    let intervals: [Interval]
+    let color = Color.red
+    
+    var body: some View {
+        HStack(spacing: 0) {
+            ForEach(intervals.indices, id:\.self) { index in
+                let isSelected = selectedInterval == intervals[index]
+                ZStack {
+                    Rectangle()
+                        .fill(color.opacity(0.2))
+                    
+                    Rectangle()
+                        .fill(color.opacity(0.8))
+                        .cornerRadius(20)
+                        .padding(2)
+                        .opacity(isSelected ? 1 : 0.01)
+                        .onTapGesture {
+                            selectedInterval = intervals[index]
+                        }
+                }
+                .overlay(
+                    Text(Interval.intervalToString(intervals[index]))
+                        .font(.system(size: 14))
+                        .fontWeight(isSelected ? .bold : .regular)
+                        .foregroundColor(isSelected ? .white : .gray)
+                )
+            }
+        }
+        .frame(height: 50)
+        .cornerRadius(20)
     }
 }
 
