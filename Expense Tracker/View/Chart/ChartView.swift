@@ -5,7 +5,6 @@
 
 import SwiftUI
 import Charts
-import SwiftUIIntrospect
 
 struct ChartView: View {
     @ObservedObject private var viewModel = ChartViewModel()
@@ -38,23 +37,7 @@ struct ChartView: View {
                     }
                     .padding(5)
                     
-                    Picker("Интервал", selection: $viewModel.selectedInterval) {
-                        ForEach(intervals, id: \.self) { interval in
-                            Text(Interval.intervalToString(interval))
-                        }
-                    }
-                    .introspect(.picker(style: .segmented), on: .iOS(.v16, .v17), customize: { segmentedControl in
-                        segmentedControl.backgroundColor = .clear
-                        segmentedControl.tintColor = .systemBlue.withAlphaComponent(0.8)
-                        segmentedControl.selectedSegmentTintColor = .systemBlue.withAlphaComponent(0.8)
-                        segmentedControl.setTitleTextAttributes([
-                            NSAttributedString.Key.foregroundColor: UIColor.white
-                        ], for: .selected)
-                        segmentedControl.setTitleTextAttributes([
-                            NSAttributedString.Key.foregroundColor: UIColor.systemBlue.withAlphaComponent(0.7)
-                        ], for: .normal)
-                    })
-                    .pickerStyle(.segmented)
+                    CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: intervals, color: .blue)
                     .onChange(of: viewModel.selectedInterval) { _ in
                         viewModel.updateChartData()
                     }
@@ -62,7 +45,7 @@ struct ChartView: View {
                     Divider()
                     Spacer()
                     
-                    ChartWithProfitAndExpensesView()
+                    ChartWithProfitAndExpensesView(viewModel: viewModel)
                 }
                 .background(
                     Rectangle()
@@ -83,7 +66,7 @@ struct ChartView: View {
 }
 
 struct ChartWithProfitAndExpensesView: View {
-    @ObservedObject private var viewModel = ChartViewModel()
+    @ObservedObject var viewModel: ChartViewModel
 
     var body: some View {
         Chart {
@@ -145,6 +128,32 @@ struct ChartWithProfitAndExpensesView: View {
         .frame(height: 500)
     }
 }
+
+//struct ChartCustomSegmentedControl: View {
+//    @Binding var selectedInterval: Interval
+//    let intervals: [Interval]
+//    let color = Color.blue
+//
+//    var body: some View {
+//        HStack(spacing: 5) {
+//            ForEach(intervals.indices, id:\.self) { index in
+//                Button(action: {
+//                    selectedInterval = intervals[index]
+//                }) {
+//                    Text(Interval.intervalToString(intervals[index]))
+//                        .font(.system(size: 14))
+//                        .padding(.vertical, 10)
+//                        .padding(.horizontal, 20)
+//                        .background(color.opacity(0.8))
+//                        .cornerRadius(10)
+//                        .lineLimit(1)
+//                }
+//                .foregroundColor(.white)
+//                .opacity(selectedInterval == intervals[index] ? 1 : 0.5)
+//            }
+//        }
+//    }
+//}
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
