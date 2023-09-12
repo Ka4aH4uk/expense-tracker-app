@@ -7,6 +7,6 @@ import Foundation
 
 struct Profit: Codable, Identifiable {
     var id = UUID()
-    let amount: Double
-    let date: Date
+    var amount: Double
+    var date: Date
 }

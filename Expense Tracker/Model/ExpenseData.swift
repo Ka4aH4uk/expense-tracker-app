@@ -7,6 +7,6 @@ import Foundation
 
 struct ExpenseData: Identifiable {
     var id = UUID()
-    let date: Date
-    let value: Double
+    var date: Date
+    var value: Double
 }

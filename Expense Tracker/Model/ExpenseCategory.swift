@@ -7,7 +7,7 @@ import Foundation
 
 struct ExpenseCategory: Codable, Identifiable {
     var id = UUID()
-    let name: String
+    var name: String
     var expenses: [Expense] = []
     var iconName: String?
 

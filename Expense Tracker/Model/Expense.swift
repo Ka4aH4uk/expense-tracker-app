@@ -7,7 +7,7 @@ import Foundation
 
 struct Expense: Codable, Identifiable {
     var id = UUID()
-    let name: String
-    let amount: Double
-    let date: Date
+    var name: String
+    var amount: Double
+    var date: Date
 }

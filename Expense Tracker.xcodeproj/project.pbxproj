@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02A208E22A8EB124009FCC26 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */; };
 		02A208E62A96B1EB009FCC26 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208E42A96B1EB009FCC26 /* done.json */; };
 		02A208E82A96B9C4009FCC26 /* edit.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208E72A96B9C4009FCC26 /* edit.json */; };
 		02A208EC2A97760A009FCC26 /* chart2.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208EB2A977609009FCC26 /* chart2.json */; };
@@ -85,7 +84,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02A8ED162A6EB0EB001E5661 /* Lottie in Frameworks */,
-				02A208E22A8EB124009FCC26 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +235,6 @@
 			name = "Expense Tracker";
 			packageProductDependencies = (
 				02A8ED152A6EB0EB001E5661 /* Lottie */,
-				02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */,
 			);
 			productName = "Expense Tracker";
 			productReference = 02A8ECD02A6D7650001E5661 /* Expense Tracker.app */;
@@ -269,7 +266,6 @@
 			mainGroup = 02A8ECC72A6D7650001E5661;
 			packageReferences = (
 				02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 02A8ECD12A6D7650001E5661 /* Products */;
 			projectDirPath = "";
@@ -537,14 +533,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.10.0;
-			};
-		};
 		02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -556,11 +544,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		02A208E12A8EB124009FCC26 /* SwiftUIIntrospect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 02A208E02A8EB124009FCC26 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = SwiftUIIntrospect;
-		};
 		02A8ED152A6EB0EB001E5661 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 02A8ED142A6EB0EB001E5661 /* XCRemoteSwiftPackageReference "lottie-ios" */;
