@@ -38,10 +38,16 @@ class ExpenseChartViewModel: ObservableObject {
             return isDateInRange(date, selectedInterval: selectedInterval)
         }
         
-        let sortedExpenses = filteredExpenses.sorted(by: { $0.date < $1.date })
-        let expenseData = sortedExpenses.map { expense in
-            ExpenseData(date: expense.date, value: expense.amount)
+        let groupedExpenses = Dictionary(grouping: filteredExpenses, by: { Calendar.current.startOfDay(for: $0.date) })
+        
+        var expenseData = [ExpenseData]()
+        for (date, expenses) in groupedExpenses.sorted(by: { $0.key < $1.key }) {
+            let totalValue = expenses.reduce(0) { partialResult, item in
+                item.amount + partialResult
+            }
+            expenseData.append(ExpenseData(date: date, value: totalValue))
         }
+        
         return expenseData
     }
 }

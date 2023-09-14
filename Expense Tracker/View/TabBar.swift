@@ -27,7 +27,7 @@ struct TabBar: View {
                 .tabItem {
                     Label("Расходы", systemImage: "cart")
                 }
-                .tag(TabSelection.espense)
+                .tag(TabSelection.expense)
         }
         .accentColor(isDarkMode ? .white.opacity(0.9) : .blue.opacity(0.9))
         .environmentObject(router)

@@ -75,19 +75,13 @@ struct ExpenseChartView: View {
                                     .padding(.horizontal, 10)
                             }
                         }
-                        .padding(.top)
+                        .padding()
                     }
                     
                     AnimatedChart()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-                .padding(10)
-                .background {
-                    RoundedRectangle(cornerRadius: 10, style: .continuous)
-                        .fill(isDarkMode ? Color.black : Color.white)
-                        .shadow(color: Color.gray, radius: 2)
-                }
-                .padding(10)
+                .padding()
             }
             Spacer()
         }
@@ -122,22 +116,16 @@ struct ExpenseChartView: View {
                         x: .value("Интервал", data.date, unit: .day),
                         y: .value("Сумма", animationTrigger ? data.value : 0)
                     )
+                    .lineStyle(.init(lineWidth: 5, lineCap: .round))
                     .foregroundStyle(Color.red.gradient)
                     .interpolationMethod(.catmullRom)
-                    
+                   
                     AreaMark(
                         x: .value("Интервал", data.date, unit: .day),
                         y: .value("Сумма", animationTrigger ? data.value : 0)
                     )
                     .interpolationMethod(.catmullRom)
-                    .foregroundStyle(Color.red.opacity(0.1).gradient)
-
-//                    .foregroundStyle(
-//                        .linearGradient(colors: [Color(.red).opacity(0.5),
-//                                                 Color(.orange).opacity(0.3)],
-//                                        startPoint: .top,
-//                                        endPoint: .bottom)
-//                    )
+                    .foregroundStyle(isDarkMode ? Color.red.opacity(0.5).gradient : Color.red.opacity(0.1).gradient)
                 } else {
                     BarMark(
                         x: .value("Интервал", data.date, unit: .day),
@@ -149,7 +137,7 @@ struct ExpenseChartView: View {
                 if let currentActiveItem, currentActiveItem.id == data.id {
                     RuleMark(x: .value("Интервал", currentActiveItem.date))
                         .lineStyle(.init(lineWidth: 2, miterLimit: 2, dash: [2], dashPhase: 5))
-                        .offset(x: (plotWidth / CGFloat(viewModel.dataChart.count / 2))) //
+                        .offset(x: (plotWidth / CGFloat(viewModel.dataChart.count)) / 2)
                         .annotation(position: .top) {
                             VStack(alignment: .leading, spacing: 6) {
                                 Text("Сумма")
@@ -170,9 +158,9 @@ struct ExpenseChartView: View {
             }
         }
         .chartYAxis {
-            AxisMarks(position: .leading, values: .automatic(desiredCount: 6))
+            AxisMarks(position: .leading)
         }
-        .chartYScale(domain: 0...(max + 2500))
+        .chartYScale(domain: 0...(max + 5000))
         .chartOverlay(content: { proxy in
             GeometryReader { innerProxy in
                 Rectangle()
@@ -183,9 +171,8 @@ struct ExpenseChartView: View {
                                 let location = value.location
                                 if let date: Date = proxy.value(atX: location.x) {
                                     let calendar = Calendar.current
-                                    let day = calendar.component(.day, from: date)
                                     if let currentItem = viewModel.dataChart.first(where: { item in
-                                        calendar.component(.day, from: item.date) == day
+                                       calendar.isDate(item.date, inSameDayAs: date)
                                     }) {
                                         self.currentActiveItem = currentItem
                                         self.plotWidth = proxy.plotAreaSize.width
@@ -214,127 +201,6 @@ struct ExpenseChartView: View {
         }
     }
 }
-
-//struct ExpenseChartView: View {
-//    @Binding var showExpenseChart: Bool
-//    @ObservedObject private var viewModel: ExpenseChartViewModel
-//    @State private var selectedInterval = Interval.week
-//    @Environment(\.dismiss) private var dismiss
-//
-//    let intervals: [Interval] = [.week, .month, .quarter, .all]
-//
-//    init(category: ExpenseCategory, showExpenseChart: Binding<Bool>) {
-//        self._showExpenseChart = showExpenseChart
-//        _viewModel = ObservedObject(wrappedValue: ExpenseChartViewModel(category: category))
-//    }
-//
-//    var body: some View {
-//        VStack {
-//            Spacer()
-//
-//            if !viewModel.dataChart.isEmpty {
-//                Spacer()
-//                LottieView(name: "chart2", loopMode: .loop, animationSpeed: 0.5)
-//                    .scaleEffect(0.2)
-//                    .frame(height: 200)
-//                    .padding()
-//
-//                Text("Этот график покажет, насколько успешно\n Вы продолжаете бороться с соблазнами тратить\n все свои деньги на ненужные вещи")
-//                    .font(.body)
-//                    .multilineTextAlignment(.center)
-//                    .padding()
-//                Spacer()
-//            } else {
-//                GroupBox ("График расходов") {
-//                    Divider()
-//                    Spacer()
-//                    HStack {
-//                        Text("Выберите интервал")
-//                            .font(.callout)
-//                            .multilineTextAlignment(.center)
-//                            Image(systemName: "calendar")
-//                    }
-//                    .padding(5)
-//
-//                    CustomSegmentedControl(selectedInterval: $selectedInterval, intervals: intervals, color: .red)
-//                    .onChange(of: selectedInterval) { newValue in
-//                        viewModel.selectedInterval = newValue
-//                        viewModel.updateChartData()
-//                    }
-//                    .padding(.bottom, 10)
-//                    Divider()
-//                    Spacer()
-//
-//                    Chart {
-//                        ForEach(viewModel.dataChart) { data in
-//                            LineMark(
-//                                x: .value("Интервал", data.date),
-//                                y: .value("Сумма", data.value)
-//                            )
-//                            .interpolationMethod(.cardinal)
-//                            .foregroundStyle(.red)
-//                            .lineStyle(.init(lineWidth: 5))
-//                            .symbol {
-//                                Circle()
-//                                    .fill(.red)
-//                                    .frame(width: 8)
-//                                    .shadow(radius: 2)
-//                            }
-//
-//                            AreaMark(
-//                                x: .value("Интервал", data.date),
-//                                y: .value("Сумма", data.value)
-//                            )
-//                            .interpolationMethod(.cardinal)
-//                            .foregroundStyle(
-//                                .linearGradient(colors: [Color(.red).opacity(0.5),
-//                                                         Color(.orange).opacity(0.3)],
-//                                                startPoint: .top,
-//                                                endPoint: .bottom)
-//                            )
-//                        }
-//                    }
-//                    .chartBackground { chartProxy in
-//                        Color.red.opacity(0.1)
-//                    }
-//                    .chartYAxis {
-//                        AxisMarks(position: .leading, values: .automatic(desiredCount: 8))
-//                    }
-//                    .frame(height: 500)
-//                }
-//                .background(
-//                    Rectangle()
-//                        .fill(Color.white)
-//                        .cornerRadius(12)
-//                        .shadow(
-//                            color: Color.gray.opacity(0.7),
-//                            radius: 6,
-//                            x: 0,
-//                            y: 0
-//                        )
-//                )
-//                .padding(10)
-//            }
-//            Spacer()
-//        }
-//        .navigationBarTitle("\(viewModel.category.name)")
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    HStack {
-//                        Image(systemName: "chevron.backward")
-//                    }
-//                }
-//            }
-//        }
-//        .onAppear {
-//            viewModel.updateChartData()
-//        }
-//    }
-//}
 
 struct ExpenseChartView_Previews: PreviewProvider {
     static var previews: some View {

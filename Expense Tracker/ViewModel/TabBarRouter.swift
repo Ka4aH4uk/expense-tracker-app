@@ -5,10 +5,10 @@
 
 import Foundation
 
-enum TabSelection: Int {
-    case profit, graph, espense
+enum TabSelection: String {
+    case profit, graph, expense
 }
 
 final class TabBarRouter: ObservableObject {
-    @Published var tabSelection: TabSelection = .espense
+    @Published var tabSelection: TabSelection = .expense
 }
