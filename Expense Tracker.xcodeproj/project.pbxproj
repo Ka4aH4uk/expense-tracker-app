@@ -11,6 +11,7 @@
 		02A208E82A96B9C4009FCC26 /* edit.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208E72A96B9C4009FCC26 /* edit.json */; };
 		02A208EC2A97760A009FCC26 /* chart2.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208EB2A977609009FCC26 /* chart2.json */; };
 		02A208EE2A977A47009FCC26 /* chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A208ED2A977A47009FCC26 /* chart.json */; };
+		02A5B8D22AB4A5CE0086005E /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A5B8D12AB4A5CE0086005E /* OnboardingPageView.swift */; };
 		02A8ECD42A6D7650001E5661 /* Expense_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */; };
 		02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECD72A6D7652001E5661 /* Assets.xcassets */; };
 		02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECDA2A6D7652001E5661 /* Preview Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		02A208E72A96B9C4009FCC26 /* edit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edit.json; sourceTree = "<group>"; };
 		02A208EB2A977609009FCC26 /* chart2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart2.json; sourceTree = "<group>"; };
 		02A208ED2A977A47009FCC26 /* chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = chart.json; sourceTree = "<group>"; };
+		02A5B8D12AB4A5CE0086005E /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		02A8ECD02A6D7650001E5661 /* Expense Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Expense Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense_TrackerApp.swift; sourceTree = "<group>"; };
 		02A8ECD72A6D7652001E5661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02A5B8D02AB4A5A40086005E /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				02A5B8D12AB4A5CE0086005E /* OnboardingPageView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		02A8ECC72A6D7650001E5661 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				02A8ECE42A6D7828001E5661 /* TabBar.swift */,
+				02A5B8D02AB4A5A40086005E /* Onboarding */,
 				02A8ED012A6D7BDA001E5661 /* Profit */,
 				02A8ED042A6D7F37001E5661 /* Chart */,
 				02A8ED052A6D7F3F001E5661 /* Expense */,
@@ -319,6 +330,7 @@
 				02A8ECF12A6D7955001E5661 /* ExpenseCategory.swift in Sources */,
 				02A8ED032A6D7DAA001E5661 /* ChartViewModel.swift in Sources */,
 				02A8ED132A6D8F79001E5661 /* ExpenseChartViewModel.swift in Sources */,
+				02A5B8D22AB4A5CE0086005E /* OnboardingPageView.swift in Sources */,
 				02A8ED0F2A6D8DC2001E5661 /* AddExpenseView.swift in Sources */,
 				02A8ED1A2A6EB6DF001E5661 /* LottieView.swift in Sources */,
 				02A8ECED2A6D78DC001E5661 /* ExpenseView.swift in Sources */,
