@@ -41,6 +41,9 @@
 		02A8ED1A2A6EB6DF001E5661 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ED192A6EB6DF001E5661 /* LottieView.swift */; };
 		02A8ED2F2A6FFA76001E5661 /* moon.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED2E2A6FFA76001E5661 /* moon.json */; };
 		02A8ED312A6FFB60001E5661 /* sun.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED302A6FFB5F001E5661 /* sun.json */; };
+		C9DD68452ABB0BEB00C6F8D6 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */; };
+		C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */; };
+		C9DD68492ABB0CA500C6F8D6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68482ABB0CA500C6F8D6 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +81,9 @@
 		02A8ED192A6EB6DF001E5661 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		02A8ED2E2A6FFA76001E5661 /* moon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon.json; sourceTree = "<group>"; };
 		02A8ED302A6FFB5F001E5661 /* sun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun.json; sourceTree = "<group>"; };
+		C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		C9DD68482ABB0CA500C6F8D6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				02A5B8D12AB4A5CE0086005E /* OnboardingPageView.swift */,
+				C9DD68482ABB0CA500C6F8D6 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 		02A8ECE12A6D77D6001E5661 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */,
 				02A8ECEE2A6D792D001E5661 /* Profit.swift */,
 				02A8ECF42A6D79C6001E5661 /* ChartsData.swift */,
 				02A8ECF02A6D7955001E5661 /* ExpenseCategory.swift */,
@@ -173,6 +181,7 @@
 				02A8ED062A6D8049001E5661 /* ExpenseViewModel.swift */,
 				02A8ED0A2A6D8CA4001E5661 /* ExpenseDetailViewModel.swift */,
 				02A8ED122A6D8F79001E5661 /* ExpenseChartViewModel.swift */,
+				C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -314,13 +323,16 @@
 				02A8ECF52A6D79C6001E5661 /* ChartsData.swift in Sources */,
 				02A8ECE92A6D7891001E5661 /* ProfitView.swift in Sources */,
 				02A8ECE52A6D7828001E5661 /* TabBar.swift in Sources */,
+				C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */,
 				02A8ECF72A6D79E7001E5661 /* Interval.swift in Sources */,
 				02A8ECF92A6D7A1C001E5661 /* ProfitViewModel.swift in Sources */,
 				02A8ECE72A6D7867001E5661 /* TabBarRouter.swift in Sources */,
 				02A8ED092A6D80CA001E5661 /* AddCostsView.swift in Sources */,
+				C9DD68452ABB0BEB00C6F8D6 /* Onboarding.swift in Sources */,
 				02A8ECEB2A6D78CA001E5661 /* ChartView.swift in Sources */,
 				02A8ECD42A6D7650001E5661 /* Expense_TrackerApp.swift in Sources */,
 				02A8ED112A6D8EE3001E5661 /* ExpenseChartView.swift in Sources */,
+				C9DD68492ABB0CA500C6F8D6 /* OnboardingView.swift in Sources */,
 				02A8ED0B2A6D8CA4001E5661 /* ExpenseDetailViewModel.swift in Sources */,
 				02A8ECEF2A6D792D001E5661 /* Profit.swift in Sources */,
 				02A8ED0D2A6D8CE8001E5661 /* ExpenseDetailView.swift in Sources */,
