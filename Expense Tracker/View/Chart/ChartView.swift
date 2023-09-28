@@ -129,32 +129,6 @@ struct ChartWithProfitAndExpensesView: View {
     }
 }
 
-//struct ChartCustomSegmentedControl: View {
-//    @Binding var selectedInterval: Interval
-//    let intervals: [Interval]
-//    let color = Color.blue
-//
-//    var body: some View {
-//        HStack(spacing: 5) {
-//            ForEach(intervals.indices, id:\.self) { index in
-//                Button(action: {
-//                    selectedInterval = intervals[index]
-//                }) {
-//                    Text(Interval.intervalToString(intervals[index]))
-//                        .font(.system(size: 14))
-//                        .padding(.vertical, 10)
-//                        .padding(.horizontal, 20)
-//                        .background(color.opacity(0.8))
-//                        .cornerRadius(10)
-//                        .lineLimit(1)
-//                }
-//                .foregroundColor(.white)
-//                .opacity(selectedInterval == intervals[index] ? 1 : 0.5)
-//            }
-//        }
-//    }
-//}
-
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
         ChartView()

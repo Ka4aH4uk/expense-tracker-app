@@ -176,12 +176,12 @@
 			isa = PBXGroup;
 			children = (
 				02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */,
+				C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */,
 				02A8ECF82A6D7A1B001E5661 /* ProfitViewModel.swift */,
 				02A8ED022A6D7DAA001E5661 /* ChartViewModel.swift */,
 				02A8ED062A6D8049001E5661 /* ExpenseViewModel.swift */,
 				02A8ED0A2A6D8CA4001E5661 /* ExpenseDetailViewModel.swift */,
 				02A8ED122A6D8F79001E5661 /* ExpenseChartViewModel.swift */,
-				C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";

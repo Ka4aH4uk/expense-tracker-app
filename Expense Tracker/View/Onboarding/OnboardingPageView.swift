@@ -62,7 +62,7 @@ struct OnboardingPageView: View {
 
 struct OnboardingPageView_Previews: PreviewProvider {
     static var previews: some View {
-        let previewModel = OnboardingModel(imageName: "onboardOne",
+        let previewModel = OnboardingModel(imageName: "1",
                                            title: "Добро пожаловать",
                                            description: "Привет! Это превью экрана онбординга. Привет! Это превью экрана онбординга. Привет! Это превью экрана онбординга.",
                                            showDoneButton: true)

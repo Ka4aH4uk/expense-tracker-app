@@ -39,10 +39,7 @@ struct ExpenseChartView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 Spacer()
-            } else {
-                Divider()
-                    .padding(.horizontal, 10)
-                
+            } else {                
                 VStack {
                     Spacer()
                     
