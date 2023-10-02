@@ -75,7 +75,7 @@ struct ExpenseChartView: View {
                         .padding()
                     }
                     
-                    AnimatedChart()
+                    AnimatedChartExpenses()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 .padding()
@@ -101,7 +101,7 @@ struct ExpenseChartView: View {
     }
     
     @ViewBuilder
-    func AnimatedChart() -> some View {
+    func AnimatedChartExpenses() -> some View {
         let max = viewModel.dataChart.max { item1, item2 in
             return item2.value > item1.value
         }?.value ?? 0
@@ -188,7 +188,7 @@ struct ExpenseChartView: View {
         }
     }
     
-    func animateGraph(fromChange: Bool = false) {
+    private func animateGraph(fromChange: Bool = false) {
         for (index, _) in viewModel.dataChart.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * (fromChange ? 0.03 : 0.05)) {
                 withAnimation(fromChange ? .easeOut(duration: 0.8) : .interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {

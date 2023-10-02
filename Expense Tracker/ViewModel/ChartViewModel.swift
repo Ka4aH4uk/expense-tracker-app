@@ -21,7 +21,7 @@ class ChartViewModel: ObservableObject {
     
     private func loadExpenses() {
         if let savedExpenses = UserDefaults.standard.data(forKey: "allExpenses"),
-            let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
+           let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
             self.expenses = loadedExpenses
         }
     }
@@ -39,12 +39,17 @@ class ChartViewModel: ObservableObject {
             return isDateInRange(date, selectedInterval: selectedInterval)
         }
         
-        let sortedExpenses = filteredExpenses.sorted(by: { $0.date < $1.date })
-        let chartsData = sortedExpenses.map { expense in
-            ChartsData(date: expense.date, value: expense.amount)
+        let groupedExpenses = Dictionary(grouping: filteredExpenses, by: { Calendar.current.startOfDay(for: $0.date) })
+        
+        var expenseData = [ChartsData]()
+        for (date, expenses) in groupedExpenses.sorted(by: { $0.key < $1.key }) {
+            let totalValue = expenses.reduce(0) { partialResult, item in
+                item.amount + partialResult
+            }
+            expenseData.append(ChartsData(date: date, value: totalValue))
         }
         
-        return chartsData
+        return expenseData
     }
     
     private func getFilteredProfits() -> [ChartsData] {
@@ -53,12 +58,17 @@ class ChartViewModel: ObservableObject {
             return isDateInRange(date, selectedInterval: selectedInterval)
         }
         
-        let sortedExpenses = filteredProfits.sorted(by: { $0.date < $1.date })
-        let chartsData = sortedExpenses.map { profit in
-            ChartsData(date: profit.date, value: profit.amount)
+        let groupedProfits = Dictionary(grouping: filteredProfits, by: { Calendar.current.startOfDay(for: $0.date) })
+        
+        var profitsData = [ChartsData]()
+        for (date, profits) in groupedProfits.sorted(by: { $0.key < $1.key }) {
+            let totalValue = profits.reduce(0) { partialResult, item in
+                item.amount + partialResult
+            }
+            profitsData.append(ChartsData(date: date, value: totalValue))
         }
         
-        return chartsData
+        return profitsData
     }
     
     func updateChartData() {

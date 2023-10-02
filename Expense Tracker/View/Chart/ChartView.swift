@@ -7,7 +7,10 @@ import SwiftUI
 import Charts
 
 struct ChartView: View {
+    @AppStorage("isDarkMode") private var isDarkMode: Bool = false
     @ObservedObject private var viewModel = ChartViewModel()
+    @State private var isLineGraph = false
+    @State private var animationTrigger = false
     let intervals: [Interval] = [.week, .month, .quarter, .all]
     
     var body: some View {
@@ -26,91 +29,112 @@ struct ChartView: View {
                     .padding()
                 Spacer()
             } else {
-                GroupBox ("График доходов и расходов") {
-                    Divider()
+                NavigationStack {
                     Spacer()
-                    HStack {
-                        Text("Выберите интервал")
-                            .font(.callout)
-                            .multilineTextAlignment(.center)
-                        Image(systemName: "calendar")
-                    }
-                    .padding(5)
                     
                     CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: intervals, color: .blue)
                     .onChange(of: viewModel.selectedInterval) { _ in
                         viewModel.updateChartData()
+                        animationTrigger = false
+                        animateGraph(fromChange: true)
                     }
                     .padding(.bottom, 10)
-                    Divider()
+                    .padding(.top, 10)
                     Spacer()
                     
-                    ChartWithProfitAndExpensesView(viewModel: viewModel)
+                    HStack {
+                        let totalProfitValue = viewModel.profitData.reduce(0.0) { partialResult, item in
+                            item.value + partialResult
+                        }
+                        
+                        let totalExpenseValue = viewModel.expenseData.reduce(0.0) { partialResult, item in
+                            item.value + partialResult
+                        }
+                        
+                        let totalValue = totalProfitValue - totalExpenseValue
+                        
+                        Text(totalValue.stringFormat + "\u{20BD}")
+                            .font(.largeTitle.bold())
+                            .padding(.horizontal,10)
+                        Spacer()
+                        
+                        Toggle(isOn: $isLineGraph) {
+                            HStack {
+                                Spacer()
+                                Image("linechart2")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .padding(.horizontal, 10)
+                            }
+                        }
+                        .padding()
+                    }
+                    
+                    AnimatedChartWithProfitAndExpenses()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        .navigationTitle("График доходов и расходов")
+                        .navigationBarTitleDisplayMode(.inline)
                 }
-                .background(
-                    Rectangle()
-                        .fill(Color.white)
-                        .cornerRadius(12)
-                        .shadow(
-                            color: Color.gray.opacity(0.7),
-                            radius: 6,
-                            x: 0,
-                            y: 0
-                        )
-                )
                 .padding(10)
             }
             Spacer()
         }
     }
-}
-
-struct ChartWithProfitAndExpensesView: View {
-    @ObservedObject var viewModel: ChartViewModel
-
-    var body: some View {
+    
+    @ViewBuilder
+    func AnimatedChartWithProfitAndExpenses() -> some View {
+        let max = viewModel.chartsData.max { item1, item2 in
+            return item2.value > item1.value
+        }?.value ?? 0
+        
         Chart {
-            ForEach(viewModel.expenseData) { data in
-                LineMark(
-                    x: .value("Date Expense", data.date),
-                    y: .value("Expense", data.value)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(by: .value("Expense", "Расходы"))
-                .lineStyle(.init(lineWidth: 5))
-                .symbol {
-                    Circle()
-                        .fill(.red)
-                        .frame(width: 8)
-                        .shadow(radius: 2)
+            ForEach(viewModel.profitData) { data in
+                if isLineGraph {
+                    LineMark(
+                        x: .value("Date Profit", data.date, unit: .day),
+                        y: .value("Profit", animationTrigger ? data.value : 0)
+                    )
+                    .lineStyle(.init(lineWidth: 5, lineCap: .round))
+                    .foregroundStyle(Color.blue.gradient)
+                    .interpolationMethod(.catmullRom)
+                   
+                    AreaMark(
+                        x: .value("Date Profit", data.date, unit: .day),
+                        y: .value("Profit", animationTrigger ? data.value : 0)
+                    )
+                    .interpolationMethod(.catmullRom)
+                    .foregroundStyle(isDarkMode ? Color.blue.opacity(0.5).gradient : Color.blue.opacity(0.1).gradient)
+                } else {
+                    BarMark(
+                        x: .value("Date Profit", data.date, unit: .day),
+                        y: .value("Profit", animationTrigger ? data.value : 0)
+                    )
+                    .foregroundStyle(Color.blue.gradient)
                 }
-                
-                AreaMark(
-                    x: .value("Date Expense", data.date),
-                    y: .value("Expense", data.value)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(
-                    .linearGradient(colors: [Color(.red).opacity(0.5),
-                                             Color(.orange).opacity(0.3)],
-                                    startPoint: .top,
-                                    endPoint: .bottom)
-                )
             }
             
-            ForEach(viewModel.profitData) { data in
-                LineMark(
-                    x: .value("Date Profit", data.date),
-                    y: .value("Profit", data.value)
-                )
-                .interpolationMethod(.catmullRom)
-                .foregroundStyle(by: .value("Profit", "Доходы"))
-                .lineStyle(StrokeStyle(lineWidth: 1, dash: [2]))
-                .symbol {
-                    Circle()
-                        .fill(.blue)
-                        .frame(width: 8)
-                        .shadow(radius: 2)
+            ForEach(viewModel.expenseData) { data in
+                if isLineGraph {
+                    LineMark(
+                        x: .value("Date Expense", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
+                    )
+                    .lineStyle(.init(lineWidth: 5, lineCap: .round))
+                    .foregroundStyle(Color.red.gradient)
+                    .interpolationMethod(.catmullRom)
+                   
+                    AreaMark(
+                        x: .value("Date Expense", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
+                    )
+                    .interpolationMethod(.catmullRom)
+                    .foregroundStyle(isDarkMode ? Color.red.opacity(0.5).gradient : Color.red.opacity(0.1).gradient)
+                } else {
+                    BarMark(
+                        x: .value("Date Expense", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
+                    )
+                    .foregroundStyle(Color.red.gradient)
                 }
             }
         }
@@ -119,13 +143,25 @@ struct ChartWithProfitAndExpensesView: View {
             "Расходы": Color(.red)
         ])
         .chartLegend(position: .bottom, alignment: .center)
-        .chartBackground { chartProxy in
-            Color.green.opacity(0.1)
-        }
         .chartYAxis {
-            AxisMarks(position: .leading, values: .automatic(desiredCount: 8))
+            AxisMarks(position: .leading)
         }
+        .chartYScale(domain: 0...(max + 5000))
         .frame(height: 500)
+        .onAppear {
+            viewModel.updateChartData()
+            animateGraph()
+        }
+    }
+    
+    private func animateGraph(fromChange: Bool = false) {
+        for (index, _) in viewModel.chartsData.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index) * (fromChange ? 0.03 : 0.05)) {
+                withAnimation(fromChange ? .easeOut(duration: 0.8) : .interactiveSpring(response: 0.8, dampingFraction: 0.8, blendDuration: 0.8)) {
+                    animationTrigger = true
+                }
+            }
+        }
     }
 }
 
