@@ -18,14 +18,14 @@ struct AddExpenseView: View {
             Spacer()
             
             TextField("Наименование", text: $nameText)
-                .floatingPlaceholder("Наименование", text: $nameText)
+                .floatingPlaceholder(NSLocalizedString("Наименование", comment: ""), text: $nameText)
                 .disableAutocorrection(true)
                 .autocapitalization(.sentences)
             Divider()
                 .padding(.horizontal, 15)
             
             TextField("Сумма", text: $amountText)
-                .floatingPlaceholder("Сумма", text: $amountText)
+                .floatingPlaceholder(NSLocalizedString("Сумма", comment: ""), text: $amountText)
                 .keyboardType(.decimalPad)
             Divider()
                 .padding(.horizontal, 15)
@@ -64,8 +64,7 @@ struct AddExpenseView: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 350, height: 50)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.red]),
-                                       startPoint: .leading, endPoint: .trailing))
+            .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
             .cornerRadius(30)
             .padding()
             .alert(isPresented: $showAlert) {

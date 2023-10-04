@@ -12,22 +12,27 @@ struct ProfitView: View {
 
     var body: some View {
         VStack {
-            HStack {
-                Text("Текущий баланс:")
-                    .font(.callout)
-                    .bold()
-                    .multilineTextAlignment(.leading)
-                    .padding()
-                Spacer()
-                Text((String(format: "%.2f", viewModel.balance)) + "\u{20BD}")
-                    .font(.title).bold()
-                    .multilineTextAlignment(.trailing)
-                    .padding(.trailing, 10)
-            }
             HStack(alignment: .center) {
                 Text("Доходы")
-                    .font(.largeTitle).bold()
+                    .font(.title).bold()
             }
+            
+            GroupBox {
+                HStack {
+                    Text("Текущий баланс:")
+                        .font(.title3)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                    Spacer()
+                    Text((String(format: "%.2f", viewModel.balance)) + "\u{20BD}")
+                        .font(.title3).bold()
+                        .multilineTextAlignment(.trailing)
+                }
+                .foregroundStyle(Color.white.gradient)
+            }
+            .backgroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+            .padding(.leading)
+            .padding(.trailing)
             Spacer()
 
             if viewModel.profitCategories.isEmpty {
@@ -48,6 +53,7 @@ struct ProfitView: View {
                     }
                 }
                 .listStyle(.plain)
+                .padding()
             }
 
             Spacer()
@@ -65,10 +71,10 @@ struct ProfitView: View {
             }
             .padding()
             .frame(width: 350)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.red]), startPoint: .leading, endPoint: .trailing))
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
             .cornerRadius(30)
             .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
-            .padding()
+            .padding(.bottom)
             .sheet(isPresented: $showProfitModal) {
                 AddProfitView(showSheet: $showProfitModal) { amount, date in
                     viewModel.addProfit(amount: amount, date: date)

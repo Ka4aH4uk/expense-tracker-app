@@ -23,13 +23,18 @@ struct ChartView: View {
                     .scaleEffect(0.5)
                     .frame(height: 180)
                     .padding()
-                Text("График доходов и расходов -\n это как узнать, сколько стоит твоя жизнь каждый месяц")
+                Text("График доходов и расходов - это как узнать, сколько стоит твоя жизнь каждый месяц")
                     .multilineTextAlignment(.center)
                     .font(.body)
                     .padding()
                 Spacer()
             } else {
-                NavigationStack {
+                VStack {
+                    HStack {
+                        Text("График доходов и расходов")
+                            .font(.title).bold()
+                            .multilineTextAlignment(.center)
+                    }
                     Spacer()
                     
                     CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: intervals, color: .blue)
@@ -70,14 +75,27 @@ struct ChartView: View {
                         .padding()
                     }
                     
+                    Chart {
+                        ForEach(viewModel.chartsData) { data in
+                            RectangleMark(x: .value("Date", data.date),
+                                          y: .value("Value", data.value),
+                                          width: .fixed(3),
+                                          height: .fixed(3)
+                            )
+                        }
+                    }
+                    .aspectRatio(4, contentMode: .fit)
+                    .padding(.bottom).padding(.leading).padding(.trailing)
+                    
                     AnimatedChartWithProfitAndExpenses()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                        .navigationTitle("График доходов и расходов")
-                        .navigationBarTitleDisplayMode(.inline)
                 }
-                .padding(10)
+                .padding()
             }
             Spacer()
+        }
+        .onAppear {
+            viewModel.updateChartData()
         }
     }
     
@@ -92,24 +110,24 @@ struct ChartView: View {
                 if isLineGraph {
                     LineMark(
                         x: .value("Date Profit", data.date, unit: .day),
-                        y: .value("Profit", animationTrigger ? data.value : 0)
+                        y: .value("Profit", animationTrigger ? data.value : 0),
+                        series: .value("profit", "A")
                     )
-                    .lineStyle(.init(lineWidth: 5, lineCap: .round))
                     .foregroundStyle(Color.blue.gradient)
                     .interpolationMethod(.catmullRom)
-                   
-                    AreaMark(
-                        x: .value("Date Profit", data.date, unit: .day),
-                        y: .value("Profit", animationTrigger ? data.value : 0)
-                    )
-                    .interpolationMethod(.catmullRom)
-                    .foregroundStyle(isDarkMode ? Color.blue.opacity(0.5).gradient : Color.blue.opacity(0.1).gradient)
+                    .lineStyle(StrokeStyle(lineWidth: 4, dash: [5]))
+                    .symbol {
+                        Circle()
+                            .fill(.blue)
+                            .frame(width: 8)
+                    }
                 } else {
                     BarMark(
                         x: .value("Date Profit", data.date, unit: .day),
                         y: .value("Profit", animationTrigger ? data.value : 0)
                     )
                     .foregroundStyle(Color.blue.gradient)
+                    .position(by: .value("profit", data.value))
                 }
             }
             
@@ -117,11 +135,17 @@ struct ChartView: View {
                 if isLineGraph {
                     LineMark(
                         x: .value("Date Expense", data.date, unit: .day),
-                        y: .value("Expense", animationTrigger ? data.value : 0)
+                        y: .value("Expense", animationTrigger ? data.value : 0),
+                        series: .value("expense", "B")
                     )
                     .lineStyle(.init(lineWidth: 5, lineCap: .round))
-                    .foregroundStyle(Color.red.gradient)
                     .interpolationMethod(.catmullRom)
+                    .foregroundStyle(Color.red.gradient)
+                    .symbol {
+                        Circle()
+                            .fill(.red)
+                            .frame(width: 8)
+                    }
                    
                     AreaMark(
                         x: .value("Date Expense", data.date, unit: .day),
@@ -135,21 +159,21 @@ struct ChartView: View {
                         y: .value("Expense", animationTrigger ? data.value : 0)
                     )
                     .foregroundStyle(Color.red.gradient)
+                    .position(by: .value("expense", data.value))
                 }
             }
         }
         .chartForegroundStyleScale([
-            "Доходы": Color(.blue),
-            "Расходы": Color(.red)
+            NSLocalizedString("Доходы", comment: ""): Color(.blue),
+            NSLocalizedString("Расходы", comment: ""): Color(.red)
         ])
         .chartLegend(position: .bottom, alignment: .center)
         .chartYAxis {
             AxisMarks(position: .leading)
         }
-        .chartYScale(domain: 0...(max + 5000))
-        .frame(height: 500)
+        .chartYScale(domain: 0...(max + 2000))
+        .aspectRatio(1, contentMode: .fit)
         .onAppear {
-            viewModel.updateChartData()
             animateGraph()
         }
     }

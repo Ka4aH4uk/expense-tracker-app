@@ -14,13 +14,13 @@ enum Interval {
     static func intervalToString(_ interval: Interval) -> String {
         switch interval {
         case .week:
-            return "Неделя"
+            return NSLocalizedString("Неделя", comment: "")
         case .month:
-            return "Месяц"
+            return NSLocalizedString("Месяц", comment: "")
         case .quarter:
-            return "Квартал"
+            return NSLocalizedString("Квартал", comment: "")
         case .all:
-            return "Все время"
+            return NSLocalizedString("Все время", comment: "")
         }
     }
 }

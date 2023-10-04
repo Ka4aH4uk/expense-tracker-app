@@ -16,7 +16,7 @@ struct AddProfitView: View {
             Spacer()
             HStack {
                 TextField("Сумма", text: $amountText)
-                    .floatingPlaceholder("Сумма", text: $amountText)
+                    .floatingPlaceholder(NSLocalizedString("Сумма", comment: ""), text: $amountText)
                     .keyboardType(.decimalPad)
                     .onReceive(amountText.publisher.collect()) { string in
                         if string.count > 8 {
@@ -48,7 +48,7 @@ struct AddProfitView: View {
             .font(.headline)
             .foregroundColor(.white)
             .frame(width: 350, height: 50)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing).opacity(amountText.isEmpty ? 0.5 : 1.0))
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom).opacity(amountText.isEmpty ? 0.5 : 1.0))
             .cornerRadius(30)
             .padding()
             Spacer()

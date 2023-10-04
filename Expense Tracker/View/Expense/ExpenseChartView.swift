@@ -34,7 +34,7 @@ struct ExpenseChartView: View {
                     .frame(height: 200)
                     .padding()
                 
-                Text("Этот график покажет, насколько успешно\n Вы продолжаете бороться с соблазнами тратить\n все свои деньги на ненужные вещи")
+                Text("Этот график покажет, насколько успешно Вы продолжаете бороться с соблазнами тратить все свои деньги на ненужные вещи")
                     .font(.body)
                     .multilineTextAlignment(.center)
                     .padding()
@@ -110,29 +110,29 @@ struct ExpenseChartView: View {
             ForEach(viewModel.dataChart) { data in
                 if isLineGraph {
                     LineMark(
-                        x: .value("Интервал", data.date, unit: .day),
-                        y: .value("Сумма", animationTrigger ? data.value : 0)
+                        x: .value("Date", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
                     )
                     .lineStyle(.init(lineWidth: 5, lineCap: .round))
                     .foregroundStyle(Color.red.gradient)
                     .interpolationMethod(.catmullRom)
                    
                     AreaMark(
-                        x: .value("Интервал", data.date, unit: .day),
-                        y: .value("Сумма", animationTrigger ? data.value : 0)
+                        x: .value("Date", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
                     )
                     .interpolationMethod(.catmullRom)
                     .foregroundStyle(isDarkMode ? Color.red.opacity(0.5).gradient : Color.red.opacity(0.1).gradient)
                 } else {
                     BarMark(
-                        x: .value("Интервал", data.date, unit: .day),
-                        y: .value("Сумма", animationTrigger ? data.value : 0)
+                        x: .value("Date", data.date, unit: .day),
+                        y: .value("Expense", animationTrigger ? data.value : 0)
                     )
                     .foregroundStyle(Color.red.gradient)
                 }
                 
                 if let currentActiveItem, currentActiveItem.id == data.id {
-                    RuleMark(x: .value("Интервал", currentActiveItem.date))
+                    RuleMark(x: .value("Date", currentActiveItem.date))
                         .lineStyle(.init(lineWidth: 2, miterLimit: 2, dash: [2], dashPhase: 5))
                         .offset(x: (plotWidth / CGFloat(viewModel.dataChart.count)) / 2)
                         .annotation(position: .top) {
@@ -157,7 +157,7 @@ struct ExpenseChartView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
-        .chartYScale(domain: 0...(max + 5000))
+        .chartYScale(domain: 0...(max + 2000))
         .chartOverlay(content: { proxy in
             GeometryReader { innerProxy in
                 Rectangle()
@@ -199,9 +199,6 @@ struct ExpenseChartView: View {
     }
 }
 
-struct ExpenseChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpenseChartView(category: ExpenseCategory(name: ""), showExpenseChart: .constant(true))
-            .previewLayout(.fixed(width: 400, height: 600))
-    }
+#Preview {
+    ExpenseChartView(category: ExpenseCategory(name: "Category"), showExpenseChart: .constant(true))
 }

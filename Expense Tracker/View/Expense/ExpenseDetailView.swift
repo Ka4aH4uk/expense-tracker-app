@@ -6,10 +6,10 @@
 import SwiftUI
 
 struct ExpenseDetailView: View {
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
     @ObservedObject private var viewModel: ExpenseDetailViewModel
     @State private var showExpensesModal = false
     @State private var showExpenseChart = false
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
     @Environment(\.dismiss) private var dismiss
     
     init(category: ExpenseCategory) {
@@ -31,7 +31,7 @@ struct ExpenseDetailView: View {
                     .frame(width: 320)
                     .padding()
                     .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.red, Color.blue]), startPoint: .leading, endPoint: .trailing))
+                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
                     .cornerRadius(30)
             }
             .padding()
@@ -44,7 +44,7 @@ struct ExpenseDetailView: View {
                         Spacer()
                         Image(systemName: "list.clipboard")
                             .font(.largeTitle)
-                        Text("А пока список пуст, давайте просто\n посмотрим в окно и поймем, сколько ошибок допустил метеоролог")
+                        Text("А пока список пуст, давайте просто посмотрим в окно и поймем, сколько ошибок допустил метеоролог")
                             .font(.body)
                             .multilineTextAlignment(.center)
                             .padding()
@@ -80,7 +80,7 @@ struct ExpenseDetailView: View {
                             .foregroundColor(.white)
                     }
                     .frame(width: 60, height: 60)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.red]), startPoint: .leading, endPoint: .trailing))
+                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
                     .clipShape(Circle())
                     .padding()
                 }

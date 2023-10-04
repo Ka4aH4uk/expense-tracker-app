@@ -1,0 +1,45 @@
+/* 
+  Localizable.strings
+  Expense Tracker  
+*/
+
+"Неделя" = "Week" ;
+"Месяц" = "Month" ;
+"Квартал" = "Quarter" ;
+"Все время" = "All time" ;
+
+"Добро пожаловать в мир финансовой свободы" = "Welcome to the world of financial freedom" ;
+"Мы поможем вам освоить искусство финансового управления и достичь своих финансовых целей!" = "We will help you master the art of financial management and achieve your financial goals!" ;
+"Освойте искусство управления деньгами" = "Master the art of money management" ;
+"Станьте хозяином своих финансов и откройте новые возможности для своих мечт!" = "Take control of your finances and unlock new possibilities for your dreams!" ;
+"Станьте мастером своих финансов" = "Become a master of your finances" ;
+"Научитесь эффективно управлять своими деньгами и сделайте финансовую независимость реальностью!" = "Learn to effectively manage your money and make financial independence a reality!" ;
+"Доходы" = "Income" ;
+"График" = "Graph" ;
+"Расходы" = "Expenses" ;
+"Приступим?" = "Let's get started?" ;
+"Далее" = "Next" ;
+"Текущий баланс:" = "Current balance:" ;
+"Как говорится, доходы у меня настолько маленькие, что мои налоговые декларации вмещаются в твиттер" = "They say my income is so small that my tax returns fit in a tweet" ;
+"Добавить доход" = "Add income" ;
+"Добавить" = "Add" ;
+"Сумма" = "Amount" ;
+"График доходов и расходов" = "Income and expenses graph" ;
+"График доходов и расходов - это как узнать, сколько стоит твоя жизнь каждый месяц" = "The income and expenses graph is like knowing how much your life costs every month";
+"Расходы" = "Expenses" ;
+"Кол-во платежей: " = "Number of payments: " ;
+"Список еще не готов, но мы можем предположить, что жадность бесконечна, как и список количества покупок" = "The list is not ready yet, but we can assume that greed is infinite, just like the list of the number of purchases" ;
+"Добавить категорию расходов" = "Add expense category" ;
+"Наименование" = "Name" ;
+"График платежей" = "Payments graph" ;
+"А пока список пуст, давайте просто посмотрим в окно и поймем, сколько ошибок допустил метеоролог" = "For now, the list is empty, let's just look out the window and see how many mistakes the meteorologist made" ;
+"На что" = "For what" ;
+"Когда" = "When" ;
+"Дата платежа" = "Payment date" ;
+"Добавить расход" = "Add expense" ;
+"Ну-ка, давай по-честному!" = "Come on, let's be honest!" ;
+"До чего же сложно заполнить поля с наименованием и суммой, а?" = "Wow, it's so hard to fill in the fields with a name and amount, right?" ;
+"Я справлюсь, обещаю!" = "I can handle it, I promise!" ;
+"Этот график покажет, насколько успешно Вы продолжаете бороться с соблазнами тратить все свои деньги на ненужные вещи" = "This graph will show how successfully you continue to resist the temptation to spend all your money on unnecessary things" ;
+"Сколько" = "How much" ;
+"Добавить расход" = "Add expense" ;

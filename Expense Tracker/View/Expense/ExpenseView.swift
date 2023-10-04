@@ -37,7 +37,7 @@ struct ExpenseView: View {
                     
                     Spacer()
                     Text("Расходы")
-                        .font(.largeTitle).bold()
+                        .font(.title).bold()
                         .padding()
                     Spacer()
                     
@@ -65,7 +65,7 @@ struct ExpenseView: View {
                 if viewModel.expenseCategories.isEmpty {
                     Image(systemName: "cart.badge.plus")
                         .font(.largeTitle)
-                    Text("Список еще не готов, но мы можем\n предположить, что жадность бесконечна,\n как и список количества покупок")
+                    Text("Список еще не готов, но мы можем предположить, что жадность бесконечна, как и список количества покупок")
                         .font(.body)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -87,7 +87,7 @@ struct ExpenseView: View {
                                                 .lineLimit(1)
                                                 .foregroundColor(.white)
                                                 .padding(.vertical, 0.5)
-                                            Text("Кол-во платежей: \(category.numberOfExpenses)")
+                                            Text(NSLocalizedString("Кол-во платежей: ", comment: "") + "\(category.numberOfExpenses)")
                                                 .font(.caption2)
                                                 .foregroundColor(.white.opacity(0.8))
                                         }
@@ -95,7 +95,7 @@ struct ExpenseView: View {
                                 })
                             .padding(15)
                             .background(
-                                LinearGradient(gradient: Gradient(colors: [.red, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                                LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
                                         .cornerRadius(30)
                             )
                             .listRowBackground(Color.clear)
@@ -120,7 +120,7 @@ struct ExpenseView: View {
                 }
                 .padding()
                 .frame(width: 350)
-                .background(LinearGradient(gradient: Gradient(colors: [.blue, .red]), startPoint: .leading, endPoint: .trailing))
+                .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
                 .cornerRadius(30)
                 .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
                 .padding()

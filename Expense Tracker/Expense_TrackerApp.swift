@@ -15,7 +15,6 @@ struct Expense_TrackerApp: App {
             if showOnboarding {
                 TabBar(router: TabBarRouter())
                     .preferredColorScheme(isDarkMode ? .dark : .light)
-                    .environment(\.locale, .init(identifier: "ru_RU"))
             } else {
                 OnboardingView(showOnboarding: $showOnboarding)
                     .ignoresSafeArea()

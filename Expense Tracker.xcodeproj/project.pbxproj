@@ -41,6 +41,7 @@
 		02A8ED1A2A6EB6DF001E5661 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ED192A6EB6DF001E5661 /* LottieView.swift */; };
 		02A8ED2F2A6FFA76001E5661 /* moon.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED2E2A6FFA76001E5661 /* moon.json */; };
 		02A8ED312A6FFB60001E5661 /* sun.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED302A6FFB5F001E5661 /* sun.json */; };
+		C9C3B4372ACD4171006041CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9C3B4392ACD4171006041CE /* Localizable.strings */; };
 		C9DD68452ABB0BEB00C6F8D6 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */; };
 		C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */; };
 		C9DD68492ABB0CA500C6F8D6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68482ABB0CA500C6F8D6 /* OnboardingView.swift */; };
@@ -81,6 +82,8 @@
 		02A8ED192A6EB6DF001E5661 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		02A8ED2E2A6FFA76001E5661 /* moon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon.json; sourceTree = "<group>"; };
 		02A8ED302A6FFB5F001E5661 /* sun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun.json; sourceTree = "<group>"; };
+		C9C3B4382ACD4171006041CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C9C3B43A2ACD4193006041CE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		C9DD68482ABB0CA500C6F8D6 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 				02A8ECFC2A6D7ABA001E5661 /* Extension */,
 				02A8ED1B2A6EB7A3001E5661 /* Lottie */,
 				02A8ECD72A6D7652001E5661 /* Assets.xcassets */,
+				C9C3B4392ACD4171006041CE /* Localizable.strings */,
 				02A8ECD92A6D7652001E5661 /* Preview Content */,
 			);
 			path = "Expense Tracker";
@@ -268,7 +272,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					02A8ECCF2A6D7650001E5661 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -281,7 +285,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				ru,
 			);
 			mainGroup = 02A8ECC72A6D7650001E5661;
 			packageReferences = (
@@ -305,6 +309,7 @@
 				02A8ED312A6FFB60001E5661 /* sun.json in Resources */,
 				02A208E62A96B1EB009FCC26 /* done.json in Resources */,
 				02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */,
+				C9C3B4372ACD4171006041CE /* Localizable.strings in Resources */,
 				02A208EE2A977A47009FCC26 /* chart.json in Resources */,
 				02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */,
 				02A8ED2F2A6FFA76001E5661 /* moon.json in Resources */,
@@ -352,11 +357,24 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		C9C3B4392ACD4171006041CE /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9C3B4382ACD4171006041CE /* en */,
+				C9C3B43A2ACD4193006041CE /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		02A8ECDC2A6D7652001E5661 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -389,6 +407,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -417,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -449,6 +469,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
