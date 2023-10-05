@@ -25,7 +25,7 @@ struct ExpenseChartView: View {
     }
     
     var body: some View {
-        VStack {
+        NavigationStack {
             if viewModel.dataChart.isEmpty {
                 Spacer()
                 Spacer()
@@ -82,7 +82,7 @@ struct ExpenseChartView: View {
             }
             Spacer()
         }
-        .navigationBarTitle("\(viewModel.category.name)")
+        .navigationBarTitle("\(viewModel.category.name)", displayMode: .large)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -182,7 +182,7 @@ struct ExpenseChartView: View {
                     )
             }
         })
-        .frame(height: 500)
+        .frame(height: 450)
         .onAppear {
             animateGraph()
         }

@@ -11,12 +11,7 @@ struct ProfitView: View {
     @State private var showProfitModal = false
 
     var body: some View {
-        VStack {
-            HStack(alignment: .center) {
-                Text("Доходы")
-                    .font(.title).bold()
-            }
-            
+        NavigationStack {
             GroupBox {
                 HStack {
                     Text("Текущий баланс:")
@@ -31,8 +26,7 @@ struct ProfitView: View {
                 .foregroundStyle(Color.white.gradient)
             }
             .backgroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .center))
-            .padding(.leading)
-            .padding(.trailing)
+            .padding(.leading).padding(.trailing).padding(.top)
             Spacer()
 
             if viewModel.profitCategories.isEmpty {
@@ -71,6 +65,7 @@ struct ProfitView: View {
                             }
                         )
                         .accentColor(.indigo)
+                        .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)
@@ -103,6 +98,7 @@ struct ProfitView: View {
                 }
                 .presentationDetents([.height(160)])
             }
+            .navigationBarTitle(Text("Доходы"), displayMode: .large)
         }
     }
 }

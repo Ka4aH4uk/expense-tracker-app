@@ -11,10 +11,9 @@ struct ChartView: View {
     @ObservedObject private var viewModel = ChartViewModel()
     @State private var isLineGraph = false
     @State private var animationTrigger = false
-//    let intervals: [Interval] = [.week, .month, .quarter, .all]
     
     var body: some View {
-        VStack {
+        NavigationStack {
             Spacer()
             
             if viewModel.chartsData.isEmpty {
@@ -30,12 +29,12 @@ struct ChartView: View {
                 Spacer()
             } else {
                 VStack {
-                    HStack {
-                        Text("График доходов и расходов")
-                            .font(.title).bold()
-                            .multilineTextAlignment(.center)
-                    }
-                    Spacer()
+//                    HStack {
+//                        Text("График доходов и расходов")
+//                            .font(.title).bold()
+//                            .multilineTextAlignment(.center)
+//                    }
+//                    Spacer()
                     
                     CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: viewModel.intervals, color: LinearGradient(colors: [Color.blue, Color.indigo.opacity(0.8)], startPoint: .top, endPoint: .center))
                     .onChange(of: viewModel.selectedInterval) { _ in
@@ -44,7 +43,7 @@ struct ChartView: View {
                         animateGraph(fromChange: true)
                     }
                     .padding(.bottom, 10)
-                    .padding(.top, 10)
+//                    .padding(.top, 10)
                     Spacer()
                     
                     HStack {
@@ -93,6 +92,7 @@ struct ChartView: View {
                 .padding()
             }
             Spacer()
+                .navigationBarTitle(Text("График бюджета"), displayMode: .large)
         }
         .onAppear {
             viewModel.updateChartData()

@@ -8,7 +8,7 @@ import SwiftUI
 struct TabBar: View {
     @StateObject var router: TabBarRouter
     @AppStorage("isDarkMode") var isDarkMode: Bool = false
-
+    
     var body: some View {
         TabView(selection: $router.tabSelection) {
             ProfitView()
@@ -16,13 +16,13 @@ struct TabBar: View {
                     Label("Доходы", systemImage: "rublesign")
                 }
                 .tag(TabSelection.profit)
-
+            
             ChartView()
                 .tabItem {
                     Label("График", systemImage: "chart.line.uptrend.xyaxis")
                 }
                 .tag(TabSelection.graph)
-
+            
             ExpenseView()
                 .tabItem {
                     Label("Расходы", systemImage: "cart")

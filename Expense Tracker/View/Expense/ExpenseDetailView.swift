@@ -19,13 +19,13 @@ struct ExpenseDetailView: View {
     let columns = Array(repeating: GridItem(.flexible()), count: 3)
     
     var body: some View {
-        VStack {
+        NavigationStack {
             Divider()
                 .padding(.horizontal, 10)
             
-            NavigationLink(
-                destination: ExpenseChartView(category: viewModel.category, showExpenseChart: $showExpenseChart)
-            ) {
+            NavigationLink {
+                ExpenseChartView(category: viewModel.category, showExpenseChart: $showExpenseChart)
+            } label: {
                 Text("График платежей")
                     .font(.headline).bold()
                     .frame(width: 320)
@@ -92,18 +92,7 @@ struct ExpenseDetailView: View {
                 }
             }
         }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    HStack {
-                        Image(systemName: "chevron.backward")
-                    }
-                }
-            }
-        }
+        .navigationBarTitle("", displayMode: .inline)
     }
 }
 
