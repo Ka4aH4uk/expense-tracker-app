@@ -43,7 +43,7 @@ struct ExpenseChartView: View {
                 VStack {
                     Spacer()
                     
-                    CustomSegmentedControl(selectedInterval: $selectedInterval, intervals: intervals, color: .red)
+                    CustomSegmentedControl(selectedInterval: $selectedInterval, intervals: intervals, color: LinearGradient(colors: [.red, .pink.opacity(0.8)], startPoint: .top, endPoint: .center))
                         .onChange(of: selectedInterval) { newValue in
                             viewModel.selectedInterval = newValue
                             viewModel.updateChartData()

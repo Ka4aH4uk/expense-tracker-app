@@ -95,7 +95,7 @@ struct ExpenseView: View {
                                 })
                             .padding(15)
                             .background(
-                                LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom)
+                                LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center)
                                         .cornerRadius(30)
                             )
                             .listRowBackground(Color.clear)
@@ -120,7 +120,7 @@ struct ExpenseView: View {
                 }
                 .padding()
                 .frame(width: 350)
-                .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+                .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
                 .cornerRadius(30)
                 .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
                 .padding()

@@ -12,6 +12,8 @@ class ChartViewModel: ObservableObject {
     @Published var expenseData: [ChartsData] = []
     @Published var profitData: [ChartsData] = []
     @Published var selectedInterval: Interval = .week
+    @Published var intervals: [Interval] = [.week, .month, .quarter, .all]
+
     
     init() {
         loadExpenses()

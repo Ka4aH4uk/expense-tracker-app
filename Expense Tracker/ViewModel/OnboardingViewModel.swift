@@ -11,18 +11,18 @@ class OnboardingViewModel: ObservableObject {
 
     init() {
         models.append(OnboardingModel(imageName: "1",
-                                      title: "Добро пожаловать в мир финансовой свободы",
-                                      description: "Мы поможем вам освоить искусство финансового управления и достичь своих финансовых целей!",
+                                      title: NSLocalizedString("Добро пожаловать в мир финансовой свободы", comment: ""),
+                                      description: NSLocalizedString("Мы поможем вам освоить искусство финансового управления и достичь своих финансовых целей!", comment: ""),
                                       showDoneButton: false))
         
         models.append(OnboardingModel(imageName: "2",
-                                      title: "Освойте искусство управления деньгами",
-                                      description: "Станьте хозяином своих финансов и откройте новые возможности для своих мечт!",
+                                      title: NSLocalizedString("Освойте искусство управления деньгами", comment: ""),
+                                      description: NSLocalizedString("Станьте хозяином своих финансов и откройте новые возможности для своих мечт!", comment: ""),
                                       showDoneButton: false))
         
         models.append(OnboardingModel(imageName: "3",
-                                      title: "Станьте мастером своих финансов",
-                                      description: "Научитесь эффективно управлять своими деньгами и сделайте финансовую независимость реальностью!",
+                                      title: NSLocalizedString("Станьте мастером своих финансов", comment: ""),
+                                      description: NSLocalizedString("Научитесь эффективно управлять своими деньгами и сделайте финансовую независимость реальностью!", comment: ""),
                                       showDoneButton: true))
     }
 }

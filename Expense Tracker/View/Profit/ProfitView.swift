@@ -6,9 +6,9 @@
 import SwiftUI
 
 struct ProfitView: View {
+    @AppStorage("isDarkMode") var isDarkMode: Bool = false
     @StateObject private var viewModel = ProfitViewModel()
     @State private var showProfitModal = false
-    @AppStorage("isDarkMode") var isDarkMode: Bool = false
 
     var body: some View {
         VStack {
@@ -30,7 +30,7 @@ struct ProfitView: View {
                 }
                 .foregroundStyle(Color.white.gradient)
             }
-            .backgroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+            .backgroundStyle(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .center))
             .padding(.leading)
             .padding(.trailing)
             Spacer()
@@ -44,15 +44,37 @@ struct ProfitView: View {
                     .padding()
             } else {
                 List {
-                    ForEach(viewModel.profitCategories.sorted(by: { $0.date > $1.date })) { profit in
-                        HStack {
-                            Text(String(format: "%.2f", profit.amount) + "\u{20BD}")
-                            Spacer()
-                            Text(DateFormatter.expenseDateFormatter.string(from: profit.date)).opacity(0.5)
-                        }
+                    ForEach(Array(viewModel.profitCategories.keys).sorted(by: >), id: \.self) { month in
+                        DisclosureGroup(
+                            isExpanded: Binding<Bool>(
+                                get: { viewModel.expandedSections.contains(month) },
+                                set: { isExpanding in
+                                    if isExpanding {
+                                        viewModel.expandedSections.insert(month)
+                                    } else {
+                                        viewModel.expandedSections.remove(month)
+                                    }
+                                }
+                            ), content: {
+                                ForEach(viewModel.profitCategories[month]?.sorted(by: { $0.date > $1.date }) ?? [], id: \.id) { profit in
+                                    HStack {
+                                        Text(String(format: "%.2f", profit.amount) + "\u{20BD}")
+                                        Spacer()
+                                        Text(DateFormatter.expenseDateFormatter.string(from: profit.date)).opacity(isDarkMode ? 0.7 : 0.4)
+                                    }
+                                }
+                            },
+                            label: {
+                                Text(month)
+                                    .foregroundStyle(.blue.gradient)
+                                    .font(.title3)
+                            }
+                        )
+                        .accentColor(.indigo)
                     }
                 }
                 .listStyle(.plain)
+                .scrollIndicators(.hidden)
                 .padding()
             }
 

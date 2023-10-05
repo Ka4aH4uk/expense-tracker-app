@@ -105,7 +105,7 @@ extension ObservableObject {
 struct CustomSegmentedControl: View {
     @Binding var selectedInterval: Interval
     let intervals: [Interval]
-    let color: Color
+    let color: LinearGradient
     
     var body: some View {
         HStack(spacing: 0) {

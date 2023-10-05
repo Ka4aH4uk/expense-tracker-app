@@ -31,7 +31,7 @@ struct ExpenseDetailView: View {
                     .frame(width: 320)
                     .padding()
                     .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
                     .cornerRadius(30)
             }
             .padding()
@@ -80,7 +80,7 @@ struct ExpenseDetailView: View {
                             .foregroundColor(.white)
                     }
                     .frame(width: 60, height: 60)
-                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
                     .clipShape(Circle())
                     .padding()
                 }

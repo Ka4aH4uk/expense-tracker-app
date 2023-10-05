@@ -64,7 +64,7 @@ struct AddExpenseView: View {
             .foregroundColor(.white)
             .padding()
             .frame(width: 350, height: 50)
-            .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
+            .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
             .cornerRadius(30)
             .padding()
             .alert(isPresented: $showAlert) {

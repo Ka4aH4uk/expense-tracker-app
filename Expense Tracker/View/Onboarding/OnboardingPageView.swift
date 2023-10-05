@@ -49,8 +49,8 @@ struct OnboardingPageView: View {
                     .contentShape(Rectangle())
                 }
                 .padding()
-                .frame(width: 160)
-                .background(.blue.gradient)
+                .frame(width: 200)
+                .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .center))
                 .cornerRadius(30)
                 .shadow(color: .gray, radius: 4, x: 0, y: 0)
                 .padding(.top)

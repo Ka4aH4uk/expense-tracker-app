@@ -11,7 +11,7 @@ struct ChartView: View {
     @ObservedObject private var viewModel = ChartViewModel()
     @State private var isLineGraph = false
     @State private var animationTrigger = false
-    let intervals: [Interval] = [.week, .month, .quarter, .all]
+//    let intervals: [Interval] = [.week, .month, .quarter, .all]
     
     var body: some View {
         VStack {
@@ -37,7 +37,7 @@ struct ChartView: View {
                     }
                     Spacer()
                     
-                    CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: intervals, color: .blue)
+                    CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: viewModel.intervals, color: LinearGradient(colors: [Color.blue, Color.indigo.opacity(0.8)], startPoint: .top, endPoint: .center))
                     .onChange(of: viewModel.selectedInterval) { _ in
                         viewModel.updateChartData()
                         animationTrigger = false

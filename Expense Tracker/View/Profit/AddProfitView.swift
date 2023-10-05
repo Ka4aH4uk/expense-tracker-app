@@ -48,7 +48,7 @@ struct AddProfitView: View {
             .font(.headline)
             .foregroundColor(.white)
             .frame(width: 350, height: 50)
-            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom).opacity(amountText.isEmpty ? 0.5 : 1.0))
+            .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .center).opacity(amountText.isEmpty ? 0.5 : 1.0))
             .cornerRadius(30)
             .padding()
             Spacer()
