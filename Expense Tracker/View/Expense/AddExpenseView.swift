@@ -33,6 +33,7 @@ struct AddExpenseView: View {
             DatePicker(selection: $selectedDate, displayedComponents: .date) {
                 HStack {
                     Image(systemName: "calendar")
+                        .font(.title2)
                     Text("Дата платежа")
                 }
             }

@@ -24,7 +24,11 @@ struct AddProfitView: View {
                         }
                     }
                 DatePicker(selection: $selectedDate, displayedComponents: .date) {
-                    Image(systemName: "calendar")
+                    HStack {
+                        Spacer()
+                        Image(systemName: "calendar")
+                            .font(.title)
+                    }
                 }
             }
 
@@ -63,9 +67,7 @@ struct AddProfitView_Previews: PreviewProvider {
             print("Amount: \(amount)")
             print("Selected Date: \(date)")
         })
-        .previewDisplayName("Add Profit View")
         .environment(\.locale, .init(identifier: "ru_RU"))
         .environment(\.colorScheme, .light)
-        .padding()
     }
 }

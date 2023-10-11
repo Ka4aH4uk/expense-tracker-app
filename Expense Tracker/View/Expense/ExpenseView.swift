@@ -58,9 +58,6 @@ struct ExpenseView: View {
                     }
                     .onDelete(perform: isEditing ? delete : nil)
                     .onMove(perform: isEditing ? move : nil)
-                    //                        .swipeActions(edge: .trailing) {
-                    //                            Button(role: .destructive, action: {}, label: { Label("Delete", systemImage: "trash") })
-                    //                        }
                 }
                 .listStyle(.plain)
             }
@@ -129,8 +126,12 @@ struct ExpenseView: View {
                             .opacity(0.8)
                             .frame(width: 20, height: 20)
                     }
+                        
                 }.padding(.trailing, 5)
             )
+        }
+        .onAppear {
+            
         }
     }
     
