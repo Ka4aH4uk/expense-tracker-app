@@ -15,7 +15,6 @@ struct ExpenseChartView: View {
     @State private var isLineGraph = false
     @State var currentActiveItem: ExpenseData?
     @State var plotWidth: CGFloat = 0
-    @Environment(\.dismiss) private var dismiss
     
     let intervals: [Interval] = [.week, .month, .quarter, .all]
     
@@ -83,18 +82,6 @@ struct ExpenseChartView: View {
             Spacer()
         }
         .navigationBarTitle("\(viewModel.category.name)", displayMode: .large)
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    dismiss()
-                } label: {
-                    HStack {
-                        Image(systemName: "chevron.backward")
-                    }
-                }
-            }
-        }
         .onAppear {
             viewModel.updateChartData()
         }

@@ -14,7 +14,6 @@ class ChartViewModel: ObservableObject {
     @Published var selectedInterval: Interval = .week
     @Published var intervals: [Interval] = [.week, .month, .quarter, .all]
 
-    
     init() {
         loadExpenses()
         loadProfits()

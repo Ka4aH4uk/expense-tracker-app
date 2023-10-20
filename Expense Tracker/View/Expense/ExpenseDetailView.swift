@@ -10,7 +10,6 @@ struct ExpenseDetailView: View {
     @ObservedObject private var viewModel: ExpenseDetailViewModel
     @State private var showExpensesModal = false
     @State private var showExpenseChart = false
-    @Environment(\.dismiss) private var dismiss
     
     init(category: ExpenseCategory) {
         _viewModel = ObservedObject(wrappedValue: ExpenseDetailViewModel(category: category))
