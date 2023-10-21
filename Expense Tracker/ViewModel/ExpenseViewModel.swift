@@ -7,7 +7,8 @@ import SwiftUI
 
 class ExpenseViewModel: ObservableObject {
     @Published var expenseCategories = [ExpenseCategory]()
-    
+    @Published var expenses = [Expense]()
+
     init() {
         loadCategories()
     }
@@ -44,5 +45,31 @@ class ExpenseViewModel: ObservableObject {
         let newCategory = ExpenseCategory(name: name, iconName: iconName)
         expenseCategories.append(newCategory)
         saveCategories()
+    }
+    
+    func deleteCategory(at indexSet: IndexSet) {
+        for index in indexSet {
+            let category = expenseCategories[index]
+            deleteExpenses(for: category)
+            expenseCategories.remove(at: index)
+        }
+        saveCategories()
+    }
+    
+    private func deleteExpenses(for category: ExpenseCategory) {
+        for expense in category.expenses {
+            if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
+                expenses.remove(at: index)
+            }
+        }
+        
+        UserDefaults.standard.removeObject(forKey: category.name)
+        saveExpenses()
+    }
+    
+    func saveExpenses() {
+        if let encodedExpenses = try? JSONEncoder().encode(expenses) {
+            UserDefaults.standard.set(encodedExpenses, forKey: "allExpenses")
+        }
     }
 }

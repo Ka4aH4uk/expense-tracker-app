@@ -136,7 +136,7 @@ struct ExpenseView: View {
     }
     
     func delete(at offsets: IndexSet) {
-        viewModel.expenseCategories.remove(atOffsets: offsets)
+        viewModel.deleteCategory(at: offsets)
         isEditing = false
     }
     
