@@ -55,16 +55,20 @@ struct AddCostsView: View {
                 showSheet = false
                 categoryText = ""
             }) {
-                Text("Добавить категорию расходов")
+                HStack {
+                    Spacer()
+                    Text("Добавить категорию расходов")
+                    Spacer()
+                }
             }
             .disabled(categoryText.isEmpty || selectedIconName.isEmpty)
             .font(.headline)
             .foregroundColor(.white)
             .padding()
-            .frame(width: 350, height: 50)
+            .frame( height: 50)
             .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center).opacity(categoryText.isEmpty || selectedIconName.isEmpty ? 0.5 : 1.0))
             .cornerRadius(30)
-            .padding()
+            .padding(.bottom).padding(.horizontal)
         }
     }
 }

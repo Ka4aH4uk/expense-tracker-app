@@ -87,11 +87,11 @@ struct ProfitView: View {
                 .contentShape(Rectangle())
             }
             .padding()
-            .frame(width: 350)
+            .frame(height: 50)
             .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
             .cornerRadius(30)
             .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
-            .padding(.bottom)
+            .padding(.bottom).padding(.horizontal)
             .sheet(isPresented: $showProfitModal) {
                 AddProfitView(showSheet: $showProfitModal) { amount, date in
                     viewModel.addProfit(amount: amount, date: date)
@@ -106,6 +106,6 @@ struct ProfitView: View {
 struct ProfitView_Previews: PreviewProvider {
     static var previews: some View {
         ProfitView()
-            .environmentObject(TabBarRouter())
+//            .environmentObject(TabBarRouter())
     }
 }

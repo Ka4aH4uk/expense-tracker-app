@@ -64,10 +64,10 @@ struct AddExpenseView: View {
             .font(.headline)
             .foregroundColor(.white)
             .padding()
-            .frame(width: 350, height: 50)
+            .frame(height: 50)
             .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
             .cornerRadius(30)
-            .padding()
+            .padding(.bottom).padding(.top).padding(.horizontal)
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Ну-ка, давай по-честному!"),
                       message: Text("До чего же сложно заполнить поля с наименованием и суммой, а?"),

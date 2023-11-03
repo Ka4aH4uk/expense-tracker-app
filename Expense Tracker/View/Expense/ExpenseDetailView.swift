@@ -25,15 +25,19 @@ struct ExpenseDetailView: View {
             NavigationLink {
                 ExpenseChartView(category: viewModel.category, showExpenseChart: $showExpenseChart)
             } label: {
-                Text("График платежей")
-                    .font(.headline).bold()
-                    .frame(width: 320)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
-                    .cornerRadius(30)
+                HStack {
+                    Spacer()
+                    Text("График платежей")
+                        .font(.headline).bold()
+                    Spacer()
+                }
             }
-            .padding()
+            .frame(height: 50)
+            .foregroundColor(.white)
+            .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
+            .cornerRadius(30)
+            .padding(.bottom).padding(.horizontal).padding(.top)
+
             Divider()
                 .padding(.horizontal, 10)
             
@@ -91,7 +95,7 @@ struct ExpenseDetailView: View {
                 }
             }
         }
-        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarTitle("\(viewModel.category.name)", displayMode: .inline)
     }
 }
 

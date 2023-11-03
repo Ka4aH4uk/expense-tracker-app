@@ -21,7 +21,8 @@ struct Expense_TrackerApp: App {
     var body: some Scene {
         WindowGroup {
             if showOnboarding {
-                TabBar(router: TabBarRouter())
+                MainTabScreen()
+//                TabBar(router: TabBarRouter())
                     .preferredColorScheme(isDarkMode ? .dark : .light)
             } else {
                 OnboardingView(showOnboarding: $showOnboarding)

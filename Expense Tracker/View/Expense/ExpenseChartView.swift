@@ -82,6 +82,7 @@ struct ExpenseChartView: View {
             Spacer()
         }
         .navigationBarTitle("\(viewModel.category.name)", displayMode: .large)
+        .toolbarRole(.editor)
         .onAppear {
             viewModel.updateChartData()
         }

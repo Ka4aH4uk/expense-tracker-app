@@ -71,8 +71,8 @@ struct ChartView: View {
                                     .padding(.horizontal, 10)
                             }
                         }
-                        .padding()
                     }
+                    .padding(.bottom)
                     
                     Chart {
                         ForEach(viewModel.chartsData) { data in
@@ -84,12 +84,13 @@ struct ChartView: View {
                         }
                     }
                     .aspectRatio(4, contentMode: .fit)
-                    .padding(.bottom).padding(.leading).padding(.trailing)
+//                    .padding(.bottom)//.padding(.leading).padding(.trailing)
                     
                     AnimatedChartWithProfitAndExpenses()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-                .padding()
+//                .padding()
+                .padding(.leading).padding(.trailing)
             }
             Spacer()
                 .navigationBarTitle(Text("График бюджета"), displayMode: .large)
@@ -192,6 +193,6 @@ struct ChartView: View {
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
         ChartView()
-            .environmentObject(TabBarRouter())
+//            .environmentObject(TabBarRouter())
     }
 }

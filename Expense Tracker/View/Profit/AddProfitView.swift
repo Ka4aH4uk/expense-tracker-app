@@ -30,10 +30,11 @@ struct AddProfitView: View {
                             .font(.title)
                     }
                 }
+                .padding(.horizontal)
             }
 
             Divider()
-                .padding(.horizontal, 5)
+                .padding(.horizontal)
             Button(action: {
                 guard let amount = Double(amountText.decimalFormatted) else { return }
                 addProfitCategory(amount, selectedDate)
@@ -51,13 +52,12 @@ struct AddProfitView: View {
             .disabled(amountText.isEmpty)
             .font(.headline)
             .foregroundColor(.white)
-            .frame(width: 350, height: 50)
+            .frame(height: 50)
             .background(LinearGradient(gradient: Gradient(colors: [Color.blue, Color.indigo.opacity(0.8)]), startPoint: .top, endPoint: .center).opacity(amountText.isEmpty ? 0.5 : 1.0))
             .cornerRadius(30)
-            .padding()
+            .padding(.bottom).padding(.top).padding(.horizontal)
             Spacer()
         }
-        .padding()
     }
 }
 
