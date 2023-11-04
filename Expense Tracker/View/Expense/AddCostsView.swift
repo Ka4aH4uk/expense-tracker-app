@@ -11,7 +11,7 @@ struct AddCostsView: View {
     var onAddCategory: (String, String?) -> Void
     @State private var selectedIconName: String = ""
 
-    let availableIcons = ["relationship", "car", "tree", "cafe", "baby", "cat", "shop", "shirt", "gift", "ticket", "repair", "shovel", "roller", "money", "sport", "hospital", "computer", "beach", "park", "travel"]
+    let availableIcons = ["relationship", "house", "car", "baby", "heart", "cat", "shop", "shirt", "gift", "shopping", "ticket", "repair", "shovel", "roller", "money", "rest", "sport", "holiday", "computer", "beach", "park", "cafe", "travel", "tree"]
     
     let columns = Array(repeating: GridItem(.flexible()), count: 4)
     

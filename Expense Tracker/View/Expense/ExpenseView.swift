@@ -101,7 +101,7 @@ struct ExpenseView: View {
                             isEditing.toggle()
                         } label: {
                             if isEditing {
-                                LottieView(name: "done")
+                                LottieView(name: "done", animationSpeed: 0.5)
                                     .scaleEffect(0.13)
                                     .opacity(0.9)
                                     .frame(width: 20, height: 20)
@@ -120,13 +120,13 @@ struct ExpenseView: View {
                     isChangeTheme.toggle()
                 } label: {
                     if isChangeTheme {
-                        LottieView(name: "sun")
+                        LottieView(name: "sun", animationSpeed: 0.6)
                             .scaleEffect(1.3)
                             .opacity(0.8)
                             .frame(width: 20, height: 20)
                         
                     } else {
-                        LottieView(name: "moon")
+                        LottieView(name: "moon", animationSpeed: 0.6)
                             .scaleEffect(1.6)
                             .opacity(0.8)
                             .frame(width: 20, height: 20)
