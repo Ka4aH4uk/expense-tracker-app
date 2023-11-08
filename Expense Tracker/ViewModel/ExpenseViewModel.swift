@@ -47,6 +47,7 @@ class ExpenseViewModel: ObservableObject {
         saveCategories()
     }
     
+    //FIXME: Реализовать правильное удаление категории и связанные с ней расходы из конкретной категории
     func deleteCategory(at indexSet: IndexSet) {
         for index in indexSet {
             let category = expenseCategories[index]

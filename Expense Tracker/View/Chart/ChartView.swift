@@ -16,7 +16,7 @@ struct ChartView: View {
         NavigationStack {
             Spacer()
             
-            if viewModel.chartsData.isEmpty {
+            if viewModel.chartsData.isEmpty && viewModel.isFirstVisit {
                 Spacer()
                 LottieView(name: "chart", loopMode: .loop)
                     .scaleEffect(0.5)
@@ -29,21 +29,31 @@ struct ChartView: View {
                 Spacer()
             } else {
                 VStack {
-//                    HStack {
-//                        Text("График доходов и расходов")
-//                            .font(.title).bold()
-//                            .multilineTextAlignment(.center)
-//                    }
-//                    Spacer()
-                    
-                    CustomSegmentedControl(selectedInterval: $viewModel.selectedInterval, intervals: viewModel.intervals, color: LinearGradient(colors: [Color.blue, Color.indigo.opacity(0.8)], startPoint: .top, endPoint: .center))
-                    .onChange(of: viewModel.selectedInterval) { _ in
+                    Spacer()
+                    CustomSegmentedControl(
+                        selectedInterval: $viewModel.selectedInterval,
+                        intervals: viewModel.intervals,
+                        color: LinearGradient(
+                            colors: [
+                                Color.blue,
+                                Color.indigo.opacity(
+                                    0.8
+                                )
+                            ],
+                            startPoint: .top,
+                            endPoint: .center
+                        )
+                    )
+                    .onChange(
+                        of: viewModel.selectedInterval
+                    ) { _ in
                         viewModel.updateChartData()
                         animationTrigger = false
-                        animateGraph(fromChange: true)
+                        animateGraph(
+                            fromChange: true
+                        )
                     }
                     .padding(.bottom, 10)
-//                    .padding(.top, 10)
                     Spacer()
                     
                     HStack {
@@ -83,17 +93,16 @@ struct ChartView: View {
                             )
                         }
                     }
-                    .aspectRatio(4, contentMode: .fit)
-//                    .padding(.bottom)//.padding(.leading).padding(.trailing)
+                    .aspectRatio(4.2, contentMode: .fit)
+                    .padding(.bottom, 5)
                     
                     AnimatedChartWithProfitAndExpenses()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
-//                .padding()
-                .padding(.leading).padding(.trailing)
+                .padding(.horizontal)
+                .navigationBarTitle(Text("График бюджета"), displayMode: .large)
             }
             Spacer()
-                .navigationBarTitle(Text("График бюджета"), displayMode: .large)
         }
         .onAppear {
             viewModel.updateChartData()
@@ -172,7 +181,7 @@ struct ChartView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
-        .chartYScale(domain: 0...(max + 2000))
+        .chartYScale(domain: 0...(max + 2500))
         .aspectRatio(1, contentMode: .fit)
         .onAppear {
             animateGraph()

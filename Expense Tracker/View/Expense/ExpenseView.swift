@@ -80,7 +80,7 @@ struct ExpenseView: View {
             .background(LinearGradient(gradient: Gradient(colors: [.red, .pink.opacity(0.8)]), startPoint: .top, endPoint: .center))
             .cornerRadius(30)
             .shadow(color: isDarkMode ? .white : .gray, radius: 4, x: 0, y: 0)
-            .padding(.bottom).padding(.horizontal)
+            .padding(.bottom).padding(.horizontal).padding(.top)
             .sheet(isPresented: $showCostsModal) {
                 AddCostsView(showSheet: $showCostsModal, categoryText: $categoryText, onAddCategory: { name, iconName in
                     viewModel.addCategory(name: name, iconName: iconName)

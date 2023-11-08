@@ -13,7 +13,8 @@ class ChartViewModel: ObservableObject {
     @Published var profitData: [ChartsData] = []
     @Published var selectedInterval: Interval = .week
     @Published var intervals: [Interval] = [.week, .month, .quarter, .all]
-
+    @Published var isFirstVisit: Bool = true
+    
     init() {
         loadExpenses()
         loadProfits()
@@ -24,6 +25,7 @@ class ChartViewModel: ObservableObject {
         if let savedExpenses = UserDefaults.standard.data(forKey: "allExpenses"),
            let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
             self.expenses = loadedExpenses
+            isFirstVisit = false
         }
     }
     
@@ -31,6 +33,7 @@ class ChartViewModel: ObservableObject {
         if let savedProfits = UserDefaults.standard.data(forKey: "profitCategories"),
            let loadedProfits = try? JSONDecoder().decode([Profit].self, from: savedProfits) {
             self.profitCategories = loadedProfits
+            isFirstVisit = false
         }
     }
     
@@ -75,6 +78,11 @@ class ChartViewModel: ObservableObject {
     func updateChartData() {
         expenseData = getFilteredExpenses()
         profitData = getFilteredProfits()
-        chartsData = expenseData + profitData
+        
+        if (expenseData.isEmpty || profitData.isEmpty) && isFirstVisit {
+            return self.chartsData = []
+        } else {
+            self.chartsData = expenseData + profitData
+        }
     }
 }

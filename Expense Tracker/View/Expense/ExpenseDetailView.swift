@@ -64,6 +64,7 @@ struct ExpenseDetailView: View {
                                 .font(.headline)
                             ForEach(viewModel.expenses.sorted(by: { $0.date > $1.date }), id: \.id) { expense in
                                 Text("\(expense.name)")
+                                    .lineLimit(3)
                                 Text("\(expense.date, formatter: DateFormatter.expenseDateFormatter)")
                                 Text("\(expense.amount, specifier: "%.2f") \u{20BD}")
                             }

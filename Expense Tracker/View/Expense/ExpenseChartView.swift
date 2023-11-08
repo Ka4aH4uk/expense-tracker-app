@@ -25,7 +25,7 @@ struct ExpenseChartView: View {
     
     var body: some View {
         NavigationStack {
-            if viewModel.dataChart.isEmpty {
+            if viewModel.dataChart.isEmpty && viewModel.isFirstVisit {
                 Spacer()
                 Spacer()
                 LottieView(name: "chart2", loopMode: .loop, animationSpeed: 0.5)
@@ -41,7 +41,6 @@ struct ExpenseChartView: View {
             } else {                
                 VStack {
                     Spacer()
-                    
                     CustomSegmentedControl(selectedInterval: $selectedInterval, intervals: intervals, color: LinearGradient(colors: [.red, .pink.opacity(0.8)], startPoint: .top, endPoint: .center))
                         .onChange(of: selectedInterval) { newValue in
                             viewModel.selectedInterval = newValue
@@ -53,11 +52,8 @@ struct ExpenseChartView: View {
                     Spacer()
                     
                     HStack {
-                        let totalValue = viewModel.dataChart.reduce(0.0) { partialResult, item in
-                            item.value + partialResult
-                        }
-                        
-                        Text(totalValue.stringFormat + "\u{20BD}")
+                        Text(viewModel.dataChart.reduce(0.0) { partialResult, item in 
+                            item.value + partialResult }.stringFormat + "\u{20BD}")
                             .font(.largeTitle.bold())
                             .padding(.horizontal,10)
                         Spacer()
@@ -71,13 +67,14 @@ struct ExpenseChartView: View {
                                     .padding(.horizontal, 10)
                             }
                         }
-                        .padding()
                     }
-                    
+                    .padding(.bottom)
+
                     AnimatedChartExpenses()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 .padding()
+                Spacer()
             }
             Spacer()
         }
@@ -145,7 +142,7 @@ struct ExpenseChartView: View {
         .chartYAxis {
             AxisMarks(position: .leading)
         }
-        .chartYScale(domain: 0...(max + 2000))
+        .chartYScale(domain: 0...(max + 2500))
         .chartOverlay(content: { proxy in
             GeometryReader { innerProxy in
                 Rectangle()
@@ -170,6 +167,10 @@ struct ExpenseChartView: View {
                     )
             }
         })
+        .chartForegroundStyleScale([
+            NSLocalizedString("Платежи", comment: ""): Color(.red)
+        ])
+        .chartLegend(position: .bottom, alignment: .center)
         .frame(height: 450)
         .onAppear {
             animateGraph()

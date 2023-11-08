@@ -9,6 +9,7 @@ class ExpenseChartViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var dataChart: [ExpenseData] = []
     @Published var selectedInterval: Interval = .week
+    @Published var isFirstVisit = true
     
     let category: ExpenseCategory
     
@@ -23,13 +24,19 @@ class ExpenseChartViewModel: ObservableObject {
         if let savedExpenses = defaults.object(forKey: category.name) as? Data {
             if let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
                 expenses = loadedExpenses
+                isFirstVisit = false
             }
         }
     }
     
     func updateChartData() {
         let filteredExpenses = getFilteredExpenses()
-        self.dataChart = filteredExpenses
+        
+        if filteredExpenses.isEmpty && isFirstVisit {
+            return self.dataChart = []
+        } else {
+            self.dataChart = filteredExpenses
+        }
     }
     
     func getFilteredExpenses() -> [ExpenseData] {
