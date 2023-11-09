@@ -100,9 +100,9 @@ struct ChartView: View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                 }
                 .padding(.horizontal)
-                .navigationBarTitle(Text("График бюджета"), displayMode: .large)
             }
             Spacer()
+                .navigationBarTitle(Text("График бюджета"), displayMode: .large)
         }
         .onAppear {
             viewModel.updateChartData()

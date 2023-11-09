@@ -21,9 +21,7 @@ struct MainTabScreen: View {
                         .font(.subheadline.bold())
                         .foregroundStyle(selectedTab == tab ? (isDarkMode ? .blue.opacity(0.8) : .blue) : (isDarkMode ? .white.opacity(0.6) : .gray.opacity(0.8)))
                         .onTapGesture {
-                            withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
                                 selectedTab = tab
-                            }
                         }
                         .scaleEffect(selectedTab == tab ? 1.0 : 0.85)
                         .frame(maxWidth: .infinity)

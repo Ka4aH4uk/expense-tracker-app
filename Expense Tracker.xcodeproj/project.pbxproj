@@ -41,6 +41,7 @@
 		02A8ED1A2A6EB6DF001E5661 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ED192A6EB6DF001E5661 /* LottieView.swift */; };
 		02A8ED2F2A6FFA76001E5661 /* moon.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED2E2A6FFA76001E5661 /* moon.json */; };
 		02A8ED312A6FFB60001E5661 /* sun.json in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ED302A6FFB5F001E5661 /* sun.json */; };
+		C9C27F632AFCB6DA0082800F /* UI Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C27F622AFCB6DA0082800F /* UI Components.swift */; };
 		C9C3B4372ACD4171006041CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9C3B4392ACD4171006041CE /* Localizable.strings */; };
 		C9DD68452ABB0BEB00C6F8D6 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */; };
 		C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */; };
@@ -82,6 +83,7 @@
 		02A8ED192A6EB6DF001E5661 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		02A8ED2E2A6FFA76001E5661 /* moon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon.json; sourceTree = "<group>"; };
 		02A8ED302A6FFB5F001E5661 /* sun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun.json; sourceTree = "<group>"; };
+		C9C27F622AFCB6DA0082800F /* UI Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UI Components.swift"; sourceTree = "<group>"; };
 		C9C3B4382ACD4171006041CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9C3B43A2ACD4193006041CE /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C9DD68442ABB0BEB00C6F8D6 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				02A8ECFD2A6D7ACD001E5661 /* Extension.swift */,
+				C9C27F622AFCB6DA0082800F /* UI Components.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 			files = (
 				02A8ED002A6D7B6D001E5661 /* AddProfitView.swift in Sources */,
 				02A8ECF52A6D79C6001E5661 /* ChartsData.swift in Sources */,
+				C9C27F632AFCB6DA0082800F /* UI Components.swift in Sources */,
 				02A8ECE92A6D7891001E5661 /* ProfitView.swift in Sources */,
 				02A8ECE52A6D7828001E5661 /* TabBar.swift in Sources */,
 				C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */,
