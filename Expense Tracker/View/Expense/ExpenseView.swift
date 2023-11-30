@@ -137,12 +137,12 @@ struct ExpenseView: View {
         }
     }
     
-    func delete(at offsets: IndexSet) {
+    private func delete(at offsets: IndexSet) {
         viewModel.deleteCategory(at: offsets)
         isEditing = false
     }
     
-    func move(from source: IndexSet, to destination: Int) {
+    private func move(from source: IndexSet, to destination: Int) {
         viewModel.expenseCategories.move(fromOffsets: source, toOffset: destination)
     }
 }

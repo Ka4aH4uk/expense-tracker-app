@@ -7,7 +7,6 @@ import SwiftUI
 
 class ExpenseViewModel: ObservableObject {
     @Published var expenseCategories = [ExpenseCategory]()
-    @Published var expenses = [Expense]()
 
     init() {
         loadCategories()
@@ -39,6 +38,8 @@ class ExpenseViewModel: ObservableObject {
         if let encodedCategories = try? JSONEncoder().encode(expenseCategories) {
             UserDefaults.standard.set(encodedCategories, forKey: "ExpenseCategories")
         }
+        // Сохраняем все расходы при каждом сохранении категорий
+        saveAllExpenses()
     }
     
     func addCategory(name: String, iconName: String?) {
@@ -47,7 +48,6 @@ class ExpenseViewModel: ObservableObject {
         saveCategories()
     }
     
-    //FIXME: Реализовать правильное удаление категории и связанные с ней расходы из конкретной категории
     func deleteCategory(at indexSet: IndexSet) {
         for index in indexSet {
             let category = expenseCategories[index]
@@ -58,19 +58,27 @@ class ExpenseViewModel: ObservableObject {
     }
     
     private func deleteExpenses(for category: ExpenseCategory) {
-        for expense in category.expenses {
-            if let index = expenses.firstIndex(where: { $0.id == expense.id }) {
-                expenses.remove(at: index)
-            }
-        }
-        
         UserDefaults.standard.removeObject(forKey: category.name)
         saveExpenses()
     }
     
     func saveExpenses() {
-        if let encodedExpenses = try? JSONEncoder().encode(expenses) {
+        if let encodedExpenses = try? JSONEncoder().encode(allExpenses()) {
             UserDefaults.standard.set(encodedExpenses, forKey: "allExpenses")
         }
+    }
+    
+    private func saveAllExpenses() {
+        if let encodedExpenses = try? JSONEncoder().encode(allExpenses()) {
+            UserDefaults.standard.set(encodedExpenses, forKey: "allExpenses")
+        }
+    }
+    
+    private func allExpenses() -> [Expense] {
+        var allExpenses = [Expense]()
+        for category in expenseCategories {
+            allExpenses.append(contentsOf: category.expenses)
+        }
+        return allExpenses
     }
 }
