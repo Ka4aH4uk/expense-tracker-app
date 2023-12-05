@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-class ChartViewModel: ObservableObject {
+final class ChartViewModel: ObservableObject {
     @Published var chartsData: [ChartsData] = []
     @Published var profitCategories: [Profit] = []
     @Published var expenses: [Expense] = []
@@ -23,15 +23,17 @@ class ChartViewModel: ObservableObject {
     
     private func loadExpenses() {
         if let savedExpenses = UserDefaults.standard.data(forKey: "allExpenses"),
-           let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
+           let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses),
+           !loadedExpenses.isEmpty {
             self.expenses = loadedExpenses
             isFirstVisit = false
         }
     }
-    
+
     private func loadProfits() {
         if let savedProfits = UserDefaults.standard.data(forKey: "profitCategories"),
-           let loadedProfits = try? JSONDecoder().decode([Profit].self, from: savedProfits) {
+           let loadedProfits = try? JSONDecoder().decode([Profit].self, from: savedProfits),
+           !loadedProfits.isEmpty {
             self.profitCategories = loadedProfits
             isFirstVisit = false
         }

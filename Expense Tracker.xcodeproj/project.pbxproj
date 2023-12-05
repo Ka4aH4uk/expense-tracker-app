@@ -15,8 +15,7 @@
 		02A8ECD42A6D7650001E5661 /* Expense_TrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */; };
 		02A8ECD82A6D7652001E5661 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECD72A6D7652001E5661 /* Assets.xcassets */; };
 		02A8ECDB2A6D7652001E5661 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02A8ECDA2A6D7652001E5661 /* Preview Assets.xcassets */; };
-		02A8ECE52A6D7828001E5661 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECE42A6D7828001E5661 /* TabBar.swift */; };
-		02A8ECE72A6D7867001E5661 /* TabBarRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */; };
+		02A8ECE52A6D7828001E5661 /* MainTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECE42A6D7828001E5661 /* MainTabScreen.swift */; };
 		02A8ECE92A6D7891001E5661 /* ProfitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECE82A6D7891001E5661 /* ProfitView.swift */; };
 		02A8ECEB2A6D78CA001E5661 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECEA2A6D78CA001E5661 /* ChartView.swift */; };
 		02A8ECED2A6D78DC001E5661 /* ExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A8ECEC2A6D78DC001E5661 /* ExpenseView.swift */; };
@@ -58,8 +57,7 @@
 		02A8ECD32A6D7650001E5661 /* Expense_TrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense_TrackerApp.swift; sourceTree = "<group>"; };
 		02A8ECD72A6D7652001E5661 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02A8ECDA2A6D7652001E5661 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		02A8ECE42A6D7828001E5661 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarRouter.swift; sourceTree = "<group>"; };
+		02A8ECE42A6D7828001E5661 /* MainTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabScreen.swift; sourceTree = "<group>"; };
 		02A8ECE82A6D7891001E5661 /* ProfitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfitView.swift; sourceTree = "<group>"; };
 		02A8ECEA2A6D78CA001E5661 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		02A8ECEC2A6D78DC001E5661 /* ExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseView.swift; sourceTree = "<group>"; };
@@ -169,7 +167,7 @@
 		02A8ECE22A6D77E4001E5661 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				02A8ECE42A6D7828001E5661 /* TabBar.swift */,
+				02A8ECE42A6D7828001E5661 /* MainTabScreen.swift */,
 				02A5B8D02AB4A5A40086005E /* Onboarding */,
 				02A8ED012A6D7BDA001E5661 /* Profit */,
 				02A8ED042A6D7F37001E5661 /* Chart */,
@@ -181,7 +179,6 @@
 		02A8ECE32A6D77EA001E5661 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				02A8ECE62A6D7867001E5661 /* TabBarRouter.swift */,
 				C9DD68462ABB0C1B00C6F8D6 /* OnboardingViewModel.swift */,
 				02A8ECF82A6D7A1B001E5661 /* ProfitViewModel.swift */,
 				02A8ED022A6D7DAA001E5661 /* ChartViewModel.swift */,
@@ -289,6 +286,7 @@
 			knownRegions = (
 				en,
 				ru,
+				Base,
 			);
 			mainGroup = 02A8ECC72A6D7650001E5661;
 			packageReferences = (
@@ -331,11 +329,10 @@
 				02A8ECF52A6D79C6001E5661 /* ChartsData.swift in Sources */,
 				C9C27F632AFCB6DA0082800F /* UI Components.swift in Sources */,
 				02A8ECE92A6D7891001E5661 /* ProfitView.swift in Sources */,
-				02A8ECE52A6D7828001E5661 /* TabBar.swift in Sources */,
+				02A8ECE52A6D7828001E5661 /* MainTabScreen.swift in Sources */,
 				C9DD68472ABB0C1B00C6F8D6 /* OnboardingViewModel.swift in Sources */,
 				02A8ECF72A6D79E7001E5661 /* Interval.swift in Sources */,
 				02A8ECF92A6D7A1C001E5661 /* ProfitViewModel.swift in Sources */,
-				02A8ECE72A6D7867001E5661 /* TabBarRouter.swift in Sources */,
 				02A8ED092A6D80CA001E5661 /* AddCostsView.swift in Sources */,
 				C9DD68452ABB0BEB00C6F8D6 /* Onboarding.swift in Sources */,
 				02A8ECEB2A6D78CA001E5661 /* ChartView.swift in Sources */,

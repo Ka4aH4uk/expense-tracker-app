@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-class ExpenseViewModel: ObservableObject {
+final class ExpenseViewModel: ObservableObject {
     @Published var expenseCategories = [ExpenseCategory]()
 
     init() {

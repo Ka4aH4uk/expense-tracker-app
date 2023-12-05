@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-class ExpenseDetailViewModel: ObservableObject {
+final class ExpenseDetailViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var allExpenses: [Expense] = []
     let category: ExpenseCategory

@@ -22,7 +22,6 @@ struct Expense_TrackerApp: App {
         WindowGroup {
             if showOnboarding {
                 MainTabScreen()
-//                TabBar(router: TabBarRouter())
                     .preferredColorScheme(isDarkMode ? .dark : .light)
             } else {
                 OnboardingView(showOnboarding: $showOnboarding)
@@ -31,4 +30,3 @@ struct Expense_TrackerApp: App {
         }
     }
 }
-

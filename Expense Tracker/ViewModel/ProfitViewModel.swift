@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ProfitViewModel: ObservableObject {
+final class ProfitViewModel: ObservableObject {
     @Published var balance: Double = 0.0
     @Published var profitCategories: [String: [Profit]] = [:]
     @Published var expandedSections: Set<String> = []

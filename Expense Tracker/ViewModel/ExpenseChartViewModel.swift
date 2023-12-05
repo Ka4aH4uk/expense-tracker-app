@@ -5,7 +5,7 @@
 
 import SwiftUI
 
-class ExpenseChartViewModel: ObservableObject {
+final class ExpenseChartViewModel: ObservableObject {
     @Published var expenses: [Expense] = []
     @Published var dataChart: [ExpenseData] = []
     @Published var selectedInterval: Interval = .week
@@ -22,7 +22,8 @@ class ExpenseChartViewModel: ObservableObject {
     private func loadExpenses() {
         let defaults = UserDefaults.standard
         if let savedExpenses = defaults.object(forKey: category.name) as? Data {
-            if let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses) {
+            if let loadedExpenses = try? JSONDecoder().decode([Expense].self, from: savedExpenses),
+               !loadedExpenses.isEmpty{
                 expenses = loadedExpenses
                 isFirstVisit = false
             }
